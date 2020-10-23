@@ -18,28 +18,28 @@
     <ClCompile Include="Purity2D.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="engine.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="src\engine.cpp">
+      <Filter>Pliki zasobów</Filter>
     </ClCompile>
-    <ClCompile Include="transform.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="src\transform.cpp">
+      <Filter>Pliki zasobów</Filter>
     </ClCompile>
-    <ClCompile Include="vector2d.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="src\vector2d.cpp">
+      <Filter>Pliki zasobów</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="engine.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="transform.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="vector2d.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\engine.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\transform.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vector2d.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

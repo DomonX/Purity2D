@@ -155,18 +155,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="engine.cpp" />
     <ClCompile Include="Purity2D.cpp" />
-    <ClCompile Include="transform.cpp" />
-    <ClCompile Include="vector2d.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="engine.hpp" />
-    <ClInclude Include="transform.hpp" />
-    <ClInclude Include="vector2d.hpp" />
+    <ClCompile Include="src\engine.cpp" />
+    <ClCompile Include="src\transform.cpp" />
+    <ClCompile Include="src\vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\engine.hpp" />
+    <ClInclude Include="src\transform.hpp" />
+    <ClInclude Include="src\vector2d.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

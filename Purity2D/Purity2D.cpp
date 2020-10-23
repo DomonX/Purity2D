@@ -1,9 +1,9 @@
 #include <iostream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include "engine.hpp"
-#include "vector2d.hpp"
-#include "transform.hpp"
+#include "src/engine.hpp"
+#include "src/vector2d.hpp"
+#include "src/transform.hpp"
 
 using namespace std;
 
