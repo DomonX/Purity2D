@@ -4,7 +4,7 @@
 #### Component
 * Class Definition
 #### Renderer _(MCh)_
-* Class Definition<
+* Class Definition
 #### Transform _(NBa)_
 * <s>Class Definition</s>
 * Collision
