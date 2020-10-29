@@ -1,28 +1,28 @@
 # Core Engine features
-#### GameObject _(MCz)_
+#### GameObject **(MCz)**
 * Class Definition
-#### Component _(MCz)_
+#### Component **(MCz)**
 * Class Definition
-#### Renderer _(MCh)_
+#### Renderer **(MCh)**
 * Class Definition
-#### Transform _(NBa)_
+#### Transform **(NBa)**
 * <s>Class Definition</s>
 * Collision
-#### Camera _(NBa)_
+#### Camera **(NBa)**
 * Class Definition
-#### Collider _(NBa)_
+#### Collider **(NBa)**
 * Class Definition
-#### Bitmap Assets _(NBa)_
+#### Bitmap Assets **(NBa)**
 * Class Definition
-#### Assets Manager Service _(NBa)_
+#### Assets Manager Service **(NBa)**
 * Class Definition
-#### Engine _(NBa)_
+#### Engine **(NBa)**
 * <s>Class Definition</s>
 * Initialization
 * Main Loop
 * Keyboard and Mouse
 #### Vector2D
 * <s>Class Definition</s>
-* Rotation _(MCz)_
-#### Scene  _(MCh)_
+* Rotation **(MCz)**
+#### Scene  **(MCh)**
 * Class Definition
