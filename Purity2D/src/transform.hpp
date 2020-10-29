@@ -31,19 +31,23 @@ public:
     }
 
     Vector2D getLeftUp() {
-        return getPosition();
+        return getPosition() - ( getScale() / 2 );
     }
 
     Vector2D getLeftDown() {
-        return getPosition() + getScale() * VectorOrientation::VERTICAL;
+		return getPosition() 
+			- getScale() / 2 * VectorOrientation::HORIZONTAL
+			+ getScale() / 2 * VectorOrientation::VERTICAL;
     }
 
     Vector2D getRightUp() {
-        return getPosition() + getScale() * VectorOrientation::HORIZONTAL;
+		return getPosition()
+			+ getScale() / 2 * VectorOrientation::HORIZONTAL
+			- getScale() / 2 * VectorOrientation::VERTICAL;
     }
 
     Vector2D getRightDown() {
-        return getPosition() + getScale();
+		return getPosition() + (getScale() / 2);
     }
 };
 

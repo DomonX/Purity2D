@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include "rotation.hpp"
+
 using namespace std;
 
 enum VectorOrientation { VERTICAL, HORIZONTAL };
@@ -51,9 +53,17 @@ public:
         return Vector2D(getX() + vec.getX(), getY() + vec.getY());
     }
 
+	Vector2D operator-(Vector2D vec) {
+		return Vector2D(getX() - vec.getX(), getY() - vec.getY());
+	}
+
     Vector2D operator*(long double scale) {
         return Vector2D(getX() * scale, getY() * scale);
     }
+
+	Vector2D operator/(long double scale) {
+		return Vector2D(getX() / scale, getY() / scale);
+	}
 
     Vector2D operator*(VectorOrientation orientation) {
         if(orientation == VERTICAL) {
@@ -64,6 +74,10 @@ public:
             return Vector2D(getX(), 0);
         }
     }
+
+	Vector2D operator*(Rotation rotation) {
+
+	}
 
     string toString() {
         stringstream ss;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
 #include "src/engine.hpp"
 #include "src/vector2d.hpp"
 #include "src/transform.hpp"
@@ -19,12 +20,23 @@ int main()
     ALLEGRO_DISPLAY * display = NULL;
     al_install_keyboard();
     al_init_primitives_addon();
+	al_init_image_addon();
     ALLEGRO_KEYBOARD_STATE keyboard;
     Transform t = Transform(Vector2D(100, 100), Vector2D(5, 5));
     Transform t2 = Transform(Vector2D(200, 150), Vector2D(125, 70));
     display = al_create_display(640, 480);
+	ALLEGRO_BITMAP* bmp = al_load_bitmap("src/testbmp.png");
     while(true) {
         al_clear_to_color(al_map_rgb(255, 255, 255));
+		al_draw_rotated_bitmap(
+			bmp, 
+			t.getRightDown().getX(), 
+			t.getRightDown().getY(), 
+			t.getLeftUp().getX(), 
+			t.getLeftUp().getY(), 
+			20, 
+			0
+		);
         al_draw_rectangle(
             t.getLeftUp().getX(),
             t.getLeftUp().getY(),
@@ -43,8 +55,8 @@ int main()
         );
         al_draw_line(
             0, 0, 
-            t.getLeftUp().getX(),
-            t.getLeftUp().getY(),
+            t.getPosition().getX(),
+            t.getPosition().getY(),
             al_map_rgb(150, 0, 0),
             1
         );
