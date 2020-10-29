@@ -1,7 +1,7 @@
 # Core Engine features
 #### GameObject _(MCz)_
 * Class Definition
-#### Component
+#### Component _(MCz)_
 * Class Definition
 #### Renderer _(MCh)_
 * Class Definition
