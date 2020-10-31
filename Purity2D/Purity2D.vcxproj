@@ -166,16 +166,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Purity2D.cpp" />
+    <ClCompile Include="src\display.cpp" />
     <ClCompile Include="src\engine.cpp" />
     <ClCompile Include="src\rotation.cpp" />
     <ClCompile Include="src\transform.cpp" />
     <ClCompile Include="src\vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine.hpp" />
-    <ClInclude Include="src\rotation.hpp" />
-    <ClInclude Include="src\transform.hpp" />
-    <ClInclude Include="src\vector2d.hpp" />
+    <ClInclude Include="lib\component.hpp" />
+    <ClInclude Include="lib\display.hpp" />
+    <ClInclude Include="lib\engine.hpp" />
+    <ClInclude Include="lib\gameObject.hpp" />
+    <ClInclude Include="lib\keyboard.hpp" />
+    <ClInclude Include="lib\keyboardObserver.hpp" />
+    <ClInclude Include="lib\renderer.hpp" />
+    <ClInclude Include="lib\rotation.hpp" />
+    <ClInclude Include="lib\transform.hpp" />
+    <ClInclude Include="lib\vector2d.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

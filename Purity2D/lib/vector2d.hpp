@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 #include "rotation.hpp"
 
@@ -76,7 +77,28 @@ public:
     }
 
 	Vector2D operator*(Rotation rotation) {
-
+		int sinVal = 0;
+		int cosVal = 0;
+		if (x < 0 && y > 0) {
+			sinVal = 1;
+			cosVal = -1;
+		}
+		if (x > 0 && y < 0) {
+			cosVal = -1;
+			sinVal = 1;
+		}
+		if (x > 0 && y > 0) {
+			sinVal = -1;
+			cosVal = -1;
+		}
+		if (x < 0 && y < 0) {
+			sinVal = -1;
+			cosVal = -1;
+		}
+		return Vector2D(
+			x * cosVal * cos(rotation.getAngle()) - x * sinVal * sin(rotation.getAngle()),
+			y * cosVal * cos(rotation.getAngle()) + y * sinVal * sin(rotation.getAngle())
+		);
 	}
 
     string toString() {

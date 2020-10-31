@@ -21,34 +21,55 @@
     <Image Include="src\testbmp.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\display.cpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClCompile>
     <ClCompile Include="src\engine.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki nagłówkowe</Filter>
     </ClCompile>
     <ClCompile Include="src\rotation.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki nagłówkowe</Filter>
     </ClCompile>
     <ClCompile Include="src\transform.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki nagłówkowe</Filter>
     </ClCompile>
     <ClCompile Include="src\vector2d.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki nagłówkowe</Filter>
     </ClCompile>
     <ClCompile Include="Purity2D.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="lib\component.hpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClInclude>
-    <ClInclude Include="src\rotation.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="lib\display.hpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClInclude>
-    <ClInclude Include="src\transform.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="lib\engine.hpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClInclude>
-    <ClInclude Include="src\vector2d.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="lib\gameObject.hpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\keyboard.hpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\keyboardObserver.hpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\renderer.hpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\rotation.hpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\transform.hpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\vector2d.hpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,14 +1,15 @@
-#ifndef ENGINE_HPP_INCLUDED
-#define ENGINE_HPP_INCLUDED
+#pragma once
+
+#include "display.hpp";
 
 class Engine {
 private:
     static Engine* instance;
+	Display* display;
     Engine();
-
 public:
     static Engine* getInstance();
+	void start();
+	void init();
+	void stop();
 };
-
-
-#endif // ENGINE_HPP_INCLUDED
