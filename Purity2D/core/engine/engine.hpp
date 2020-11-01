@@ -1,6 +1,5 @@
 #pragma once
-
-#include "display.hpp";
+#include "../display/display.hpp"
 
 class Engine {
 private:

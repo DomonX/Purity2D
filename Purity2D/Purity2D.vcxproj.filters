@@ -21,55 +21,67 @@
     <Image Include="src\testbmp.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\display.cpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClCompile Include="core\vector2d\vector2d.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine.cpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClCompile Include="core\transform\transform.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="src\rotation.cpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClCompile Include="core\rotation\rotation.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="src\transform.cpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClCompile Include="core\display\display.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="src\vector2d.cpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClCompile Include="core\engine\engine.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Purity2D.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="core\camera\Camera.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="core\line\Line.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\component.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\vector2d\vector2d.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\display.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\transform\transform.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\engine.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\rotation\rotation.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\gameObject.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\renderer\renderer.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\keyboard.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\keyboardObserver\keyboardObserver.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\keyboardObserver.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\keyboard\keyboard.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\renderer.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\gameObject\gameObject.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\rotation.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\engine\engine.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\transform.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\display\display.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="lib\vector2d.hpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClInclude Include="core\component\component.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="core\camera\Camera.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="core\line\Line.h">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

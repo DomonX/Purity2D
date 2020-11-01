@@ -165,24 +165,28 @@
     <Image Include="src\testbmp.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\camera\Camera.cpp" />
+    <ClCompile Include="core\display\display.cpp" />
+    <ClCompile Include="core\engine\engine.cpp" />
+    <ClCompile Include="core\line\Line.cpp" />
+    <ClCompile Include="core\rotation\rotation.cpp" />
+    <ClCompile Include="core\transform\transform.cpp" />
+    <ClCompile Include="core\vector2d\vector2d.cpp" />
     <ClCompile Include="Purity2D.cpp" />
-    <ClCompile Include="src\display.cpp" />
-    <ClCompile Include="src\engine.cpp" />
-    <ClCompile Include="src\rotation.cpp" />
-    <ClCompile Include="src\transform.cpp" />
-    <ClCompile Include="src\vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\component.hpp" />
-    <ClInclude Include="lib\display.hpp" />
-    <ClInclude Include="lib\engine.hpp" />
-    <ClInclude Include="lib\gameObject.hpp" />
-    <ClInclude Include="lib\keyboard.hpp" />
-    <ClInclude Include="lib\keyboardObserver.hpp" />
-    <ClInclude Include="lib\renderer.hpp" />
-    <ClInclude Include="lib\rotation.hpp" />
-    <ClInclude Include="lib\transform.hpp" />
-    <ClInclude Include="lib\vector2d.hpp" />
+    <ClInclude Include="core\camera\Camera.h" />
+    <ClInclude Include="core\component\component.hpp" />
+    <ClInclude Include="core\display\display.hpp" />
+    <ClInclude Include="core\engine\engine.hpp" />
+    <ClInclude Include="core\gameObject\gameObject.hpp" />
+    <ClInclude Include="core\keyboardObserver\keyboardObserver.hpp" />
+    <ClInclude Include="core\keyboard\keyboard.hpp" />
+    <ClInclude Include="core\line\Line.h" />
+    <ClInclude Include="core\renderer\renderer.hpp" />
+    <ClInclude Include="core\rotation\rotation.hpp" />
+    <ClInclude Include="core\transform\transform.hpp" />
+    <ClInclude Include="core\vector2d\vector2d.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

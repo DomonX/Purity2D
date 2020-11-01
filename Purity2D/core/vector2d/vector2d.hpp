@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <cmath>
 
-#include "rotation.hpp"
+#include "../rotation/rotation.hpp"
 
 using namespace std;
 
@@ -27,10 +27,7 @@ public:
     static const Vector2D DOWN;
     static const Vector2D LEFT;
     static const Vector2D RIGHT;
-    static const Vector2D RIGHT_UP;
-    static const Vector2D RIGHT_DOWN;
-    static const Vector2D LEFT_UP;
-    static const Vector2D LEFT_DOWN;
+	static const Vector2D ZERO;
 
     Vector2D() {
         setX(0);
@@ -70,34 +67,15 @@ public:
         if(orientation == VERTICAL) {
             return Vector2D(0, getY());
         }
-
         if(orientation == HORIZONTAL) {
             return Vector2D(getX(), 0);
         }
     }
 
 	Vector2D operator*(Rotation rotation) {
-		int sinVal = 0;
-		int cosVal = 0;
-		if (x < 0 && y > 0) {
-			sinVal = 1;
-			cosVal = -1;
-		}
-		if (x > 0 && y < 0) {
-			cosVal = -1;
-			sinVal = 1;
-		}
-		if (x > 0 && y > 0) {
-			sinVal = -1;
-			cosVal = -1;
-		}
-		if (x < 0 && y < 0) {
-			sinVal = -1;
-			cosVal = -1;
-		}
 		return Vector2D(
-			x * cosVal * cos(rotation.getAngle()) - x * sinVal * sin(rotation.getAngle()),
-			y * cosVal * cos(rotation.getAngle()) + y * sinVal * sin(rotation.getAngle())
+			x * cos(rotation.getAngle()) - y * sin(rotation.getAngle()),
+			y * cos(rotation.getAngle()) + x * sin(rotation.getAngle())
 		);
 	}
 

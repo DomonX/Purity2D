@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "component.hpp"
+#include "../component/component.hpp"
 
 class GameObject : Component {
 private:

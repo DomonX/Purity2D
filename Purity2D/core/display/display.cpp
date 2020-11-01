@@ -1,4 +1,4 @@
-#include "../lib/display.hpp"
+#include "display.hpp"
 
 Display::Display() {
 	al_get_monitor_info(1, &monitor);
