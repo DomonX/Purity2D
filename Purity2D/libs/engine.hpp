@@ -1,6 +1,9 @@
 #pragma once
-#include "../display/display.hpp"
-
+#include "display.hpp"
+#include "transform.hpp"
+#include "renderer.hpp"
+#include "gameObject.hpp"
+#include "component.hpp"
 class Engine {
 private:
     static Engine* instance;

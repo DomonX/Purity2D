@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../gameObject/gameObject.hpp"
-#include "../transform/transform.hpp"
+#include "gameObject.hpp"
+#include "transform.hpp"
 class Camera : public GameObject {
 	Transform* cameraPosition;
 	Camera() {

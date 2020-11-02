@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "../component/component.hpp"
+#include "component.hpp"
 
 class GameObject : Component {
 private:
@@ -10,8 +10,8 @@ private:
 public:
 	void addComponent(Component* component) {
 		for (Component* i : components) {
-			component->onAddThisComponent(i);
-			i->onAddOtherComponent(component);
+			component->onGetOtherComponent(i);
+			i->onGetOtherComponent(component);
 		}
 		components.push_back(component);
 	}

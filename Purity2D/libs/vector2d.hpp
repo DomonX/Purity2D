@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <cmath>
 
-#include "../rotation/rotation.hpp"
+#include "rotation.hpp"
 
 using namespace std;
 

@@ -1,26 +1,26 @@
-#ifndef RECTANGLE_HPP_INCLUDED
-#define RECTANGLE_HPP_INCLUDED
+#pragma once
 
-#include "../vector2d/vector2d.hpp"
-#include "../component/component.hpp"
-#include "../rotation/rotation.hpp"
-#include "../line/Line.h"
+#include "vector2d.hpp"
+#include "component.hpp"
+#include "rotation.hpp"
+#include "line.h"
 
 class Transform : public Component {
 private:
-    Vector2D scale;
-    Vector2D position;
+	Vector2D scale;
+	Vector2D position;
 	Rotation rotation;
 	vector<Line> lines;
 public:
-    Transform(Vector2D scale, Vector2D position, Rotation rotation) {
-        this->scale = scale;
-        this->position = position;
+	Transform(Vector2D scale, Vector2D position, Rotation rotation) {
+		this->scale = scale;
+		this->position = position;
 		this->rotation = rotation;
 		lines = vector<Line>();
 		calculateLines();
-    }
-    static const Transform base;
+	}
+
+	static const Transform base;
 
 	Transform operator*(Vector2D scale) {
 		return Transform(getScale() + scale, getPosition(), getRotation());
@@ -34,56 +34,39 @@ public:
 		return Transform(getScale(), getPosition(), getRotation() + rot);
 	}
 
-    Vector2D getScale() {
-        return scale;
-    }
+	Vector2D getScale() {
+		return scale;
+	}
 
-    Vector2D getPosition() {
+	Vector2D getPosition() {
 		return position;
-    }
+	}
 
 	Rotation getRotation() {
 		return rotation;
 	}
 
-    Vector2D getLeftUp() {
+	Vector2D getLeftUp() {
 		return rotateVector(getScale() / 2 * -1);
-    }
+	}
 
-    Vector2D getLeftDown() {
+	Vector2D getLeftDown() {
 		return rotateVector(getScale() / 2 * VectorOrientation::VERTICAL - getScale() / 2 * VectorOrientation::HORIZONTAL);
-    }
+	}
 
-    Vector2D getRightUp() {
+	Vector2D getRightUp() {
 		return rotateVector(getScale() / 2 * VectorOrientation::HORIZONTAL - getScale() / 2 * VectorOrientation::VERTICAL);
-    }
+	}
 
-    Vector2D getRightDown() {
+	Vector2D getRightDown() {
 		return rotateVector(getScale() / 2);
-    }
+	}
 
 	vector<Line> getLines() {
 		return lines;
 	}
 
-	bool collides(Vector2D vector) {
-		return collides(Line(Vector2D::ZERO, vector));
-	}
-
-	bool collides(Line line) {
-		vector<Line> lines = getLines();
-		for (Line i : lines) {
-			if (line.intersect(i)) {
-				return true;
-			}
-		}
-	}
-
-	bool collides(Transform transform);
-
-	bool isInside(Transform transform);
-
-private: 
+private:
 	Vector2D rotateVector(Vector2D vector) {
 		return getPosition() + vector * rotation;
 	}
@@ -100,5 +83,3 @@ private:
 		lines.push_back(Line(leftDown, leftUp));
 	}
 };
-
-#endif // RECTANGLE_HPP_INCLUDED

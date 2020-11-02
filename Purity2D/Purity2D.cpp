@@ -2,9 +2,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
-#include "core/engine/engine.hpp"
-#include "core/vector2d/vector2d.hpp"
-#include "core/transform/transform.hpp"
+#include "libs/engine.hpp"
 
 using namespace std;
 
