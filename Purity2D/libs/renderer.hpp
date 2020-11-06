@@ -26,10 +26,10 @@ public:
 	void render() {
 		vector<Line> lines = transform->getLines();
 		for (Line i : lines) {
-			Line x = i;
-			//Line x = ( i + Vector2D(0, -300) ) * scale;
+			Line x = ( i * GameState::get()->getViewScale() ) - GameState::get()->getViewPosition();
+			//Line x = i;
 			al_draw_line(x.begin().getX(), x.begin().getY(), x.end().getX(), x.end().getY(), al_map_rgb(255, 0, 0), 1);
 		}
-		//(*transform) = (*transform) + Rotation(1);		
+		(*transform) = (*transform) + Rotation(1);		
 	}
 };

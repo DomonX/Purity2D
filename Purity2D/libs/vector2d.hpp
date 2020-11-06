@@ -1,6 +1,4 @@
-#ifndef VECTOR2D_HPP_INCLUDED
-#define VECTOR2D_HPP_INCLUDED
-
+#pragma once
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -79,6 +77,10 @@ public:
 		);
 	}
 
+	Vector2D absolute() {
+		return Vector2D(x < 0 ? x * -1 : x, y < 0 ? y * -1 : y);
+	}
+
     string toString() {
         stringstream ss;
         ss << "(" << setprecision(20) << getX() << ", " << getY() << ")";
@@ -86,4 +88,3 @@ public:
     }
 };
 
-#endif // VECTOR2D_HPP_INCLUDED

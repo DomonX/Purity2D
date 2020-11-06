@@ -18,6 +18,18 @@ public:
 		return endVec;
 	}
 
+	Line operator+(Vector2D vector) {
+		return Line(beginVec + vector, endVec + vector);
+	}
+
+	Line operator-(Vector2D vector) {
+		return Line(beginVec - vector, endVec - vector);
+	}
+
+	Line operator*(double scale) {
+		return Line(beginVec * scale, endVec * scale);
+	}
+
 	bool intersect(Line line) {
 		Vector2D a = line.begin();
 		Vector2D b = line.end();

@@ -168,6 +168,7 @@
     <ClCompile Include="Purity2D.cpp" />
     <ClCompile Include="sources\display.cpp" />
     <ClCompile Include="sources\engine.cpp" />
+    <ClCompile Include="sources\gameState.cpp" />
     <ClCompile Include="sources\vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,11 +178,11 @@
     <ClInclude Include="libs\display.hpp" />
     <ClInclude Include="libs\engine.hpp" />
     <ClInclude Include="libs\gameObject.hpp" />
-    <ClInclude Include="libs\keyboard.hpp" />
-    <ClInclude Include="libs\keyboardObserver.hpp" />
+    <ClInclude Include="libs\gameState.hpp" />
     <ClInclude Include="libs\line.h" />
     <ClInclude Include="libs\renderer.hpp" />
     <ClInclude Include="libs\rotation.hpp" />
+    <ClInclude Include="libs\scene.hpp" />
     <ClInclude Include="libs\transform.hpp" />
     <ClInclude Include="libs\vector2d.hpp" />
   </ItemGroup>

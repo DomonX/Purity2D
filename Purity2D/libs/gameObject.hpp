@@ -2,10 +2,10 @@
 
 #include <vector>
 #include "component.hpp"
-
-class GameObject : Component {
+using namespace std;
+class GameObject: Component {
 private:
-	std::vector<Component*> components;
+	vector<Component*> components;
 
 public:
 	void addComponent(Component* component) {
