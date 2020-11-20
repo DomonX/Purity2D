@@ -5,6 +5,7 @@
 class Component {
 public:
 	void virtual onGetOtherComponent(Component* component) {}
+	void virtual onGetParentComponent(Component* component) {}
 	void virtual onStart() {}
 	void virtual onUpdate() {}
 	void virtual onDelete() {}

@@ -3,10 +3,9 @@
 #include <vector>
 #include "component.hpp"
 using namespace std;
-class GameObject: Component {
+class GameObject : public Component {
 private:
 	vector<Component*> components;
-
 public:
 	void addComponent(Component* component) {
 		for (Component* i : components) {
@@ -14,6 +13,12 @@ public:
 			i->onGetOtherComponent(component);
 		}
 		components.push_back(component);
+	}
+
+	void onGetOtherComponent(Component* component) {
+		for (Component* i : components) {
+			i->onGetParentComponent(component);
+		}
 	}
 
 	void onUpdate() {

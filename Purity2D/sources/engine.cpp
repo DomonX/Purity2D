@@ -8,6 +8,8 @@
 #include <thread>
 #include "../libs/engine.hpp"
 #include "../libs/collider.hpp"
+#include "../libs/asset.hpp"
+#include "../libs/imageRenderer.hpp"
 
 Engine* Engine::instance = 0;
 
@@ -43,6 +45,7 @@ void Engine::start() {
 	Transform* tr = new Transform(Vector2D(200, 200), Vector2D(300, 300), Rotation(0));
 	test->addComponent(tr);
 	test->addComponent(new Renderer());
+	//test->addComponent(mainScene->getCamera());
 
 	GameObject* square2 = new GameObject();
 	square2->addComponent(new Transform(Vector2D(130, 340), Vector2D(300, 500), Rotation(0)));
@@ -56,14 +59,24 @@ void Engine::start() {
 	mainScene->addGameObject(test);
 	mainScene->addGameObject(square2);
 
-	gameState->onStart();
+	Asset* a = new Asset("testAsset");
+	a->load("xxx.bmp");
+	a->load("xxxx.png");
+
+	Asset* b = new Asset("testAsset2");
+	b->load("xxx.bmp");
 
 	Scene* testScene = new Scene("Main2");
 	GameObject* test2 = new GameObject();
 	test2->addComponent(new Transform(Vector2D(300, 300), Vector2D(300, 300), Rotation(45)));
-	test2->addComponent(new Renderer());
+	test2->addComponent(new ImageRenderer());
+	test2->addComponent(a);
 	testScene->addGameObject(test2);
 	gameState->addScene(testScene);
+
+	gameState->onStart();
+
+	ALLEGRO_BITMAP* bmp = a->getImage(Vector2D(100, 100));
 
 	while (true) {
 		auto start = std::chrono::system_clock::now();
@@ -87,18 +100,22 @@ void Engine::start() {
 
 		if (al_key_down(&keyboard, ALLEGRO_KEY_DOWN)) {
 			(*cam)->move(Vector2D::DOWN);
+			//(*tr) = (*tr) + Vector2D::DOWN;
 		}
 
 		if (al_key_down(&keyboard, ALLEGRO_KEY_UP)) {
 			(*cam)->move(Vector2D::UP);
+			//(*tr) = (*tr) + Vector2D::UP;
 		}
 
 		if (al_key_down(&keyboard, ALLEGRO_KEY_LEFT)) {
 			(*cam)->move(Vector2D::LEFT);
+			//(*tr) = (*tr) + Vector2D::LEFT;
 		}
 
 		if (al_key_down(&keyboard, ALLEGRO_KEY_RIGHT)) {
 			(*cam)->move(Vector2D::RIGHT);
+			//(*tr) = (*tr) + Vector2D::RIGHT;
 		}
 		auto end = std::chrono::system_clock::now();
 		std::chrono::duration<double> elapsedSeconds = end - start;		

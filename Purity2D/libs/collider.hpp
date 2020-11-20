@@ -6,12 +6,10 @@ private:
 	Transform* transform = nullptr;
 
 public:
-
 	void onGetOtherComponent(Component* component) {
 		Component::onGetOtherComponent(component);
 		storeIfIsInstance(&transform, component);
 	}
-
 
 	bool collides(Line line) {
 		if (this->transform == nullptr) {

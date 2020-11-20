@@ -77,6 +77,10 @@ public:
 		);
 	}
 
+	bool operator==(Vector2D vec) {
+		return getX() == vec.getX() && getY() == vec.getY();
+	}
+
 	Vector2D absolute() {
 		return Vector2D(x < 0 ? x * -1 : x, y < 0 ? y * -1 : y);
 	}

@@ -11,16 +11,26 @@ private:
 	Vector2D position;
 	Rotation rotation;
 	vector<Line> lines;
+	Transform* parentTransform = nullptr;
 public:
 	Transform(Vector2D scale, Vector2D position, Rotation rotation) {
 		this->scale = scale;
 		this->position = position;
 		this->rotation = rotation;
 		lines = vector<Line>();
-		calculateLines();
 	}
 
-	static const Transform base;
+	Transform(Transform* transform) {
+		this->scale = transform->scale;
+		this->position = transform->position;
+		this->rotation = transform->rotation;
+		lines = vector<Line>();
+	}
+
+	void onGetParentComponent(Component* component) {
+		Component::onGetParentComponent(component);
+		storeIfIsInstance(&parentTransform, component);
+	}
 
 	Transform operator*(Vector2D scale) {
 		return Transform(getScale() + scale, getPosition(), getRotation());
@@ -34,12 +44,20 @@ public:
 		return Transform(getScale(), getPosition(), getRotation() + rot);
 	}
 
+	bool operator==(Transform trans) {
+		return trans.getScale() == getScale() && trans.getPosition() == getPosition() && trans.getRotation() == getRotation();
+	}
+
+	bool operator!=(Transform trans) {
+		return !(*this == trans);
+	}
+
 	Vector2D getScale() {
 		return scale;
 	}
 
 	Vector2D getPosition() {
-		return position;
+		return parentTransform != nullptr ? parentTransform->getPosition() + position : position;
 	}
 
 	Rotation getRotation() {
@@ -63,6 +81,9 @@ public:
 	}
 
 	vector<Line> getLines() {
+		if (lines.size() == 0) {
+			calculateLines();
+		}
 		return lines;
 	}
 
@@ -72,7 +93,6 @@ private:
 	}
 
 	void calculateLines() {
-		lines.clear();
 		Vector2D rightDown = getRightDown();
 		Vector2D rightUp = getRightUp();
 		Vector2D leftDown = getLeftDown();

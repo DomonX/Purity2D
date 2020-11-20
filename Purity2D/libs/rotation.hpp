@@ -23,6 +23,9 @@ public:
 	Rotation operator+(Rotation rotation) {
 		return Rotation(piToAngle(getAngle() + rotation.getAngle()));
 	}
+	bool operator==(Rotation rotation) {
+		return getAngle() == rotation.getAngle();
+	}
 private:
 	double angleToPi(double angle) {
 		return angle * M_PI / 180;

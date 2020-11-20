@@ -166,12 +166,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Purity2D.cpp" />
+    <ClCompile Include="sources\assetManager.cpp" />
     <ClCompile Include="sources\display.cpp" />
     <ClCompile Include="sources\engine.cpp" />
     <ClCompile Include="sources\gameState.cpp" />
     <ClCompile Include="sources\vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="libs\asset.hpp" />
+    <ClInclude Include="libs\assetManager.hpp" />
     <ClInclude Include="libs\camera.hpp" />
     <ClInclude Include="libs\collider.hpp" />
     <ClInclude Include="libs\component.hpp" />
@@ -179,6 +182,7 @@
     <ClInclude Include="libs\engine.hpp" />
     <ClInclude Include="libs\gameObject.hpp" />
     <ClInclude Include="libs\gameState.hpp" />
+    <ClInclude Include="libs\imageRenderer.hpp" />
     <ClInclude Include="libs\line.h" />
     <ClInclude Include="libs\renderer.hpp" />
     <ClInclude Include="libs\rotation.hpp" />
