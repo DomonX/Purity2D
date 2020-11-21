@@ -30,10 +30,11 @@ int main() {
 	mainScene->addGameObject(test);
 
 	GameObject* square2 = new GameObject();
-	square2->addComponent(new Transform(Vector2D(13, 34), Vector2D(0, 0), Rotation(0)));
+	square2->addComponent(new Transform(Vector2D(13, 34), Vector2D(20, 20), Rotation(0)));
 	square2->addComponent(new Renderer());
 	square2->addComponent(new Collider());
-	//mainScene->addGameObject(square2);
+	mainScene->addGameObject(square2);
+	test->addGameObject(square2);
 
 	Asset* a = new Asset("testAsset");
 	a->load("xxx.bmp");

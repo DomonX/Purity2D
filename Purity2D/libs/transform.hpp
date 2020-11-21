@@ -32,6 +32,11 @@ public:
 		storeIfIsInstance(&parentTransform, component);
 	}
 
+	void onRemoveParentComponent(Component* component) {
+		Component::onRemoveParentComponent(component);
+		removeIfIsInstance(&parentTransform, component);
+	}
+
 	Transform operator*(Vector2D scale) {
 		return Transform(getScale() + scale, getPosition(), getRotation());
 	}
@@ -57,7 +62,7 @@ public:
 	}
 
 	Vector2D getPosition() {
-		return parentTransform != nullptr ? parentTransform->getPosition() + position : position;
+		return position + (parentTransform != nullptr ? parentTransform->getPosition() : Vector2D::ZERO);
 	}
 
 	Rotation getRotation() {
