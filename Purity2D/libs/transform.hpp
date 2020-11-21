@@ -87,6 +87,10 @@ public:
 		return lines;
 	}
 
+	string toString() {
+		return "{ Pos: " + this->getPosition().toString() + ", Scale: " + this->getScale().toString() + ", Rotation: " + this->getRotation().toString() + " }";
+	}
+
 private:
 	Vector2D rotateVector(Vector2D vector) {
 		return getPosition() + vector * rotation;

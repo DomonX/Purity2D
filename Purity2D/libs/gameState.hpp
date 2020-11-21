@@ -48,7 +48,7 @@ public:
 	}
 
 	Vector2D getViewPosition() {
-		return currentScene->getCamera()->getPosition();
+		return currentScene->getCamera()->getPosition() - currentScene->getCamera()->getSize() / 2;
 	}
 
 	Camera** getCameraHook() {

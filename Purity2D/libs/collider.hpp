@@ -1,6 +1,7 @@
 #pragma once
 #include "component.hpp"
 #include "transform.hpp"
+#include <allegro5/allegro_primitives.h>
 class Collider : public Component {
 private:
 	Transform* transform = nullptr;
@@ -44,13 +45,12 @@ public:
 
 	bool isInside(Transform inner, Transform outer) {
 		vector<Line> lines = outer.getLines();
-		Line positionLine = Line(Vector2D::ZERO, inner.getPosition());
-		int collisionCount = 0;
+		Line positionLine = Line(outer.getPosition(), inner.getPosition());
 		for (Line i : lines) {
 			if (i.intersect(positionLine)) {
-				collisionCount++;
+				return false;
 			}
 		}
-		return collisionCount % 2 == 1;
+		return true;
 	}
 };

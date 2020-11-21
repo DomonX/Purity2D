@@ -1,6 +1,8 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <cstring>
+using namespace std;
 class Rotation {
 private:
 	double value;
@@ -25,6 +27,12 @@ public:
 	}
 	bool operator==(Rotation rotation) {
 		return getAngle() == rotation.getAngle();
+	}
+	Rotation operator*(double value) {
+		return Rotation(piToAngle(getAngle()) * value);
+	}
+	string toString() {
+		return to_string(getAngle());
 	}
 private:
 	double angleToPi(double angle) {

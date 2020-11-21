@@ -7,12 +7,17 @@
 #include "scene.hpp"
 #include "gameObject.hpp"
 #include "renderer.hpp"
+#include "imageRenderer.hpp"
+#include "collider.hpp"
+#include "keyboard.hpp"
 
 class Engine {
 private:
     static Engine* instance;
 	Display* display;
 	GameState* gameState;
+	Time* time;
+	Keyboard* keyboard;
     Engine();
 public:
     static Engine* getInstance();

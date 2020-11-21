@@ -13,28 +13,22 @@ enum VectorOrientation { VERTICAL, HORIZONTAL };
 
 class Vector2D {
 private:
-    long double x, y;
-    void setX(long double x) {
-        this->x = x;
-    }
-    void setY(long double y) {
-        this->y = y;
-    }
+    double x, y;
 public:
-    static const Vector2D UP;
-    static const Vector2D DOWN;
-    static const Vector2D LEFT;
-    static const Vector2D RIGHT;
-	static const Vector2D ZERO;
+    static Vector2D UP;
+    static Vector2D DOWN;
+    static Vector2D LEFT;
+    static Vector2D RIGHT;
+	static Vector2D ZERO;
 
     Vector2D() {
-        setX(0);
-        setY(0);
+		this->x = 0;
+		this->y = 0;
     }
 
-    Vector2D(long double x, long double y) {
-        setX(x);
-        setY(y);
+    Vector2D(double x, double y) {
+		this->x = x;
+		this->y = y;
     }
 
     long double getX() {
@@ -53,11 +47,11 @@ public:
 		return Vector2D(getX() - vec.getX(), getY() - vec.getY());
 	}
 
-    Vector2D operator*(long double scale) {
+    Vector2D operator*(double scale) {
         return Vector2D(getX() * scale, getY() * scale);
     }
 
-	Vector2D operator/(long double scale) {
+	Vector2D operator/(double scale) {
 		return Vector2D(getX() / scale, getY() / scale);
 	}
 
