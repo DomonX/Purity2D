@@ -16,6 +16,7 @@ int main() {
 
 	// Creating Scenes
 	Scene* mainScene = new Scene("Main");
+	Camera* cam = mainScene->getCamera();
 	gs->addScene(mainScene);
 
 	Scene* testScene = new Scene("Main2");
@@ -29,22 +30,30 @@ int main() {
 	test->addComponent(new Controller());
 	mainScene->addGameObject(test);
 
-	GameObject* square2 = new GameObject();
-	square2->addComponent(new Transform(Vector2D(13, 34), Vector2D(20, 20), Rotation(0)));
-	square2->addComponent(new Renderer());
-	square2->addComponent(new Collider());
-	mainScene->addGameObject(square2);
-	test->addGameObject(square2);
+	GameObject* test2 = new GameObject();
+	test2->addComponent(new Transform(Vector2D(13, 34), Vector2D(20, 20), Rotation(0)));
+	test2->addComponent(new Renderer());
+	test2->addComponent(new Collider());
+	mainScene->addGameObject(test2);
+
+	GameObject* test4 = new GameObject();
+	test4->addComponent(new Transform(Vector2D(400, 230), Vector2D(60, 80), Rotation(0)));
+	test4->addComponent(new Renderer());
+	test4->addComponent(new Collider());
+	mainScene->addGameObject(test4);
+
+	//test->addGameObject(test2);
+	test->addGameObject(cam);
 
 	Asset* a = new Asset("testAsset");
 	a->load("xxx.bmp");
 	a->load("xxxx.png");
 
-	GameObject* test2 = new GameObject();
-	test2->addComponent(new Transform(Vector2D(300, 300), Vector2D(300, 300), Rotation(45)));
-	test2->addComponent(new ImageRenderer());
-	test2->addComponent(a);
-	testScene->addGameObject(test2);
+	GameObject* test3 = new GameObject();
+	test3->addComponent(new Transform(Vector2D(300, 300), Vector2D(300, 300), Rotation(45)));
+	test3->addComponent(new ImageRenderer());
+	test3->addComponent(a);
+	testScene->addGameObject(test3);
 
 	// Setting Up scene
 	gs->switchScene("Main");

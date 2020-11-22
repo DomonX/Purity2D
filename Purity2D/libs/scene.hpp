@@ -22,6 +22,7 @@ public:
 	}
 
 	void onStart() {
+		camera->onStart();
 		for (GameObject* i : objects) {
 			i->onStart();
 		}

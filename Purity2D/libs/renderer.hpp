@@ -43,7 +43,7 @@ public:
 		for (Line x : lines) {
 			al_draw_line(x.begin().getX(), x.begin().getY(), x.end().getX(), x.end().getY(), al_map_rgb(255, 0, 0), 1);
 		}
-		(*transform) = (*transform) + (Rotation(10) * Time::getDeltaTime());		
+		//(*transform) = (*transform) + (Rotation(10) * Time::getDeltaTime());		
 	}
 
 	bool virtual renderConditions() {

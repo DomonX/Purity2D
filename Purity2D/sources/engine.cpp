@@ -41,7 +41,6 @@ void Engine::init() {
 
 void Engine::start() {
 	gameState->onStart();
-	display->setResolution(1920, 1080);
 	while (true) {
 		auto start = std::chrono::system_clock::now();
 		al_clear_to_color(al_map_rgb(255, 255, 255));		
