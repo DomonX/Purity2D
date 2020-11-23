@@ -16,9 +16,26 @@ private:
 	void createScreen();
 	Display();
 public:
+	/*! 
+		\brief Getter method for Display singleton
+		\returns Global Display element
+	*/
 	static Display* get();
+	/*!
+		\brief Assigns new resolution to display
+		\param width new width of display
+		\param height new height of display
+	*/
 	void setResolution(unsigned int width, unsigned int height);
-	void stop();
+	/*!
+		\brief Stops working of display
+		\warning Shouldnt be called directly
+	*/
+	void onStop();
+	/*!
+		\brief Returns size of display
+		\returns Vector of display size
+	*/
 	Vector2D getSize() {
 		return size;
 	}

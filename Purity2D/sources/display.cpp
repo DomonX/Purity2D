@@ -42,7 +42,7 @@ void Display::setResolution(unsigned int width, unsigned int height) {
 	al_resize_display(display, width, height);
 }
 
-void Display::stop() {
+void Display::onStop() {
 	if (display != nullptr) {
 		al_destroy_display(display);
 	}

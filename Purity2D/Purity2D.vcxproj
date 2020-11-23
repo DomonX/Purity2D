@@ -189,6 +189,7 @@
     <ClInclude Include="libs\keyboard.hpp" />
     <ClInclude Include="libs\keyboardObserver.hpp" />
     <ClInclude Include="libs\line.h" />
+    <ClInclude Include="libs\renderable.hpp" />
     <ClInclude Include="libs\renderer.hpp" />
     <ClInclude Include="libs\rotation.hpp" />
     <ClInclude Include="libs\scene.hpp" />

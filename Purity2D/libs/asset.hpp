@@ -13,26 +13,38 @@ struct AssetSized {
 	double height;
 };
 
+
 class Asset : public Component {
 private:
 	string id;
 	vector<AssetSized *> assetSizes;
 public:
+	/*!
+		\brief Constructor of asset
+		\param id Unique id of asset
+	*/
 	Asset(string id) {
 		this->id = id;
 		AssetManager::getAssetManager()->sign(id);
 	}
 
-	void load(string imageId) {
-		ALLEGRO_BITMAP * bmp = AssetManager::getAssetManager()->occupy(id, imageId);
+	/*!
+		\brief Method for loading another image for asset
+		\param path Path to image in assets folder 
+	*/
+	void load(string path) {
+		ALLEGRO_BITMAP * bmp = AssetManager::getAssetManager()->occupy(id, path);
 		AssetSized* asset = new AssetSized();
 		asset->bmp = bmp;
 		asset->height = al_get_bitmap_height(bmp);
 		asset->width = al_get_bitmap_width(bmp);
-		asset->imageId = imageId;
+		asset->imageId = path;
 		assetSizes.push_back(asset);
 	}
 
+	/*!
+		\brief Lifecycle hook for deleting asset component
+	*/
 	void onDelete() {
 		AssetManager::getAssetManager()->unsign(id);
 		for (AssetSized* asset : assetSizes) {
@@ -40,6 +52,11 @@ public:
 		}
 	}
 
+	/*! 
+		\brief Method for getting displayable bitmap
+		\param size Desired size of image
+		\returns An Bitmap that is closest possible to desired size
+	*/
 	ALLEGRO_BITMAP* getImage(Vector2D size) {
 		AssetSized* bestAsset = nullptr;
 		for (AssetSized* asset : assetSizes) {
@@ -60,5 +77,9 @@ public:
 			return nullptr;
 		}
 		return bestAsset->bmp;
+	}
+
+	Component* clone() {
+		return this;
 	}
 };

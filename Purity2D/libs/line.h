@@ -5,31 +5,56 @@ private:
 	Vector2D beginVec;
 	Vector2D endVec;
 public:
+	/*!
+		\brief Constructor of Line from two vectors from beginning to end
+	*/
 	Line(Vector2D begin, Vector2D end) {
 		this->beginVec = begin;
 		this->endVec = end;
 	}
 
+	/*!
+		\brief Returns Vector2D which points to begin of Line
+	*/
 	Vector2D begin() {
 		return beginVec;
 	}
 
+	/*!
+		\brief Returns Vector2D which points to end of Line
+	*/
 	Vector2D end() {
 		return endVec;
 	}
 
+	/*!
+		\brief Moves Line by Vector2D
+	*/
 	Line operator+(Vector2D vector) {
 		return Line(beginVec + vector, endVec + vector);
 	}
 
+	/*!
+		\brief Moves Line by negated Vector2D
+	*/
 	Line operator-(Vector2D vector) {
 		return Line(beginVec - vector, endVec - vector);
 	}
 
+	/*!
+		\brief Scales line
+	*/
 	Line operator*(double scale) {
 		return Line(beginVec * scale, endVec * scale);
 	}
 
+	Vector2D toVector() {
+		return endVec - beginVec;
+	}
+
+	/*!
+		\brief Checks if Line intersects (cross) with another Line
+	*/
 	bool intersect(Line line) {
 		Vector2D a = line.begin();
 		Vector2D b = line.end();

@@ -7,7 +7,7 @@
 #include "engine.hpp"
 #include "time.hpp"
 
-class Renderer : public Component {
+class Renderer : public Component, public Renderable {
 protected:
 	Transform* transform = nullptr;
 	Camera** cameraHook = nullptr;
@@ -20,24 +20,29 @@ protected:
 		return (*cameraHook)->isVisible(transform);
 	}
 public:
+	/*! \brief Constructor for Renderer which automatically connects Camera to it */
 	Renderer() {
 		cameraHook = GameState::get()->getCameraHook();
 	}
+
+	/*! @copydoc Component::onUpdate() */
 	void onUpdate() {
 		Component::onUpdate();
 		if (!renderConditions()) {
 			return;
 		}
-		render();
+		onRender();
+		//GameState::get()->queueRender(this->transform->getLayer(), this->transform->getPosition().getY(), this);
 	}
 
+	/*! @copydoc Component::onGetOtherComponent() */
 	void onGetOtherComponent(Component* component) {
 		Component::onGetOtherComponent(component);
 		storeIfIsInstance(&transform, component);
 	}
 
-	void virtual render() {
-		cout << "Renderuje element " << endl;
+	/*! @copydoc Renderable::onRender() */
+	void virtual onRender() {
 		Transform current = calculateNewTransform();
 		vector<Line> lines = current.getLines();
 		for (Line x : lines) {
@@ -46,7 +51,12 @@ public:
 		//(*transform) = (*transform) + (Rotation(10) * Time::getDeltaTime());		
 	}
 
+	/*! \brief Returns if current GameObject can be rendered */
 	bool virtual renderConditions() {
 		return transform != nullptr && isVisible();
+	}
+
+	virtual Component* clone() {
+		return new Renderer();
 	}
 };

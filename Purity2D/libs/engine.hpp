@@ -20,8 +20,15 @@ private:
 	Keyboard* keyboard;
     Engine();
 public:
+	/*!
+		\brief Getter method for Engine singleton
+		\returns Global Engine element
+	*/
     static Engine* getInstance();
-	void start();
-	void init();
-	void stop();
+	/*!	\brief Lifecycle hook called when engine starts */
+	void onStart();
+	/*!	\brief Lifecycle hook called when engine is initialized */
+	void onInit();
+	/*!	\brief Lifecycle hook called when engine stops */
+	void onStop();
 };

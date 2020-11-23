@@ -14,13 +14,18 @@ private:
 		return image;
 	}
 public:
+	/*!
+		@copydoc Renderer::onGetOtherComponent(Component*)
+		\warning There should be Asset and Transform component connected to the same GameObject
+		\see Asset Transform
+	*/
 	void onGetOtherComponent(Component* component) {
 		Renderer::onGetOtherComponent(component);
 		storeIfIsInstance(&image, component);
 	}
-
-	void render() {
-		Renderer::render();
+	/*!	@copydoc Rendererable::onRender() */
+	void onRender() {
+		//Renderer::onRender();
 		Transform current = calculateNewTransform();
 		ALLEGRO_BITMAP* bmp = getImage()->getImage(current.getScale());
 		Vector2D currentScale = current.getScale();
@@ -41,12 +46,17 @@ public:
 			0
 		);
 	}
-
+	/*! \brief Returns external hook for Asset which can be modified from other component to perform animations */
 	Asset** hookAsset() {
 		return &externalAssetHook;
 	}
 
+	/*! @copydoc Renderer::renderConditions() */
 	bool renderConditions() {
 		return Renderer::renderConditions() && getImage() != nullptr;
+	}
+
+	virtual Component* clone() {
+		return new ImageRenderer();
 	}
 };

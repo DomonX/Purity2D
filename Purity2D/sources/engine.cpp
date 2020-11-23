@@ -27,7 +27,7 @@ Engine::Engine(){
 	time = nullptr;
 }
 
-void Engine::init() {
+void Engine::onInit() {
 	al_init();
 	al_install_keyboard();
 	al_init_primitives_addon();
@@ -36,10 +36,10 @@ void Engine::init() {
 	gameState = GameState::get();
 	time = Time::getTime();
 	keyboard = Keyboard::get();
-	gameState->init();
+	gameState->onInit();
 }
 
-void Engine::start() {
+void Engine::onStart() {
 	gameState->onStart();
 	while (true) {
 		auto start = std::chrono::system_clock::now();
@@ -50,10 +50,11 @@ void Engine::start() {
 		auto end = std::chrono::system_clock::now();
 		std::chrono::duration<double> elapsedSeconds = end - start;
 		time->setDeltaTime(elapsedSeconds.count());
+		cout << 1 / elapsedSeconds.count() << endl;
 	}
 }
 
-void Engine::stop() {
-	display->stop();
+void Engine::onStop() {
+	display->onStop();
 	free(display);
 }
