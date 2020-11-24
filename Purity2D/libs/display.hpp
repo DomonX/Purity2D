@@ -1,10 +1,10 @@
 #pragma once
 
 #include <allegro5/allegro.h>
-
-#include <allegro5/allegro.h>
-#include "line.h"
 #include <vector>
+
+#include "line.h"
+
 class Display {
 private:
 	ALLEGRO_DISPLAY* display = NULL;
@@ -36,6 +36,8 @@ public:
 		\brief Returns size of display
 		\returns Vector of display size
 	*/
+
+	void fullscreen(bool mode);
 	Vector2D getSize() {
 		return size;
 	}

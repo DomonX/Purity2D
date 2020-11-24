@@ -1,13 +1,18 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
 #include "component.hpp"
 using namespace std;
 class GameObject : public Component {
 private:
 	vector<Component*> components;
 	vector<GameObject*> children;
+	bool alreadyStarted;
 public:
+	GameObject() : Component() {
+		alreadyStarted = false;
+	}
 	/*!
 		\brief Adds Component do GameObject
 		\param component Component to add
@@ -22,6 +27,10 @@ public:
 			i->onGetParentComponent(component);
 		}
 		components.push_back(component);
+		if (alreadyStarted) {
+			component->onStart();
+		}
+		/*sort(components.begin(), components.end(), [](Component* first, Component* second) { return first->getPriority() < first->getPriority(); });*/
 	}
 
 	/*!
@@ -33,6 +42,9 @@ public:
 			gameObject->onGetParentComponent(i);
 		}
 		children.push_back(gameObject);
+		if (alreadyStarted) {
+			gameObject->onStart();
+		}
 	}
 
 	/*!
@@ -81,6 +93,7 @@ public:
 		for (Component* i : components) {
 			i->onStart();
 		}
+		alreadyStarted = true;
 	}
 
 	/*!

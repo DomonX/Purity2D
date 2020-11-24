@@ -105,6 +105,12 @@ public:
 		return sqrt(y * y + x * x);
 	}
 
+	double lenQ() {
+		double x = getX();
+		double y = getY();
+		return(y * y + x * x);
+	}
+
 	/*!	\brief Stringify vector	*/
     string toString() {
         stringstream ss;

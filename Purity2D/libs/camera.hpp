@@ -2,21 +2,18 @@
 
 #include "gameObject.hpp"
 #include "transform.hpp"
-#include "collider.hpp"
 
 class Camera : public GameObject {
 private:
 	Transform* cameraPosition;
-	Collider* collider;
+	Vector2D pos;
 public:
 	/*!
 		\brief Creates Camera with components: Transform and Collider
 	*/
 	Camera() {
-		cameraPosition = new Transform(Vector2D(355, 200), Vector2D(0, 0), Rotation(0));
-		collider = new Collider();
+		cameraPosition = new Transform(Vector2D(1920 / 6, 1080 / 6), Vector2D(0, 0), Rotation(0));
 		addComponent(cameraPosition);
-		addComponent(collider);
 	}
 
 	/*!
@@ -35,13 +32,16 @@ public:
 		return cameraPosition->getPosition();
 	}
 
-
 	/*!
 		\brief Moves camera by target Vector
 		\param vec Vector by which camera will be moved
 	*/
 	void move(Vector2D vec) {
 		(*cameraPosition) = (*cameraPosition) + vec;
+	}
+
+	void resize(Vector2D vec) {
+		(*cameraPosition) = Transform(vec, getPosition(), Rotation(0));
 	}
 
 	/*!
@@ -51,12 +51,16 @@ public:
 	bool isVisible(Transform* transform) {
 		Vector2D cameraVec = (getSize() / 2).absolute();
 		Vector2D transformVec = transform->getScale().absolute();
-		double hor = (cameraVec * VectorOrientation::HORIZONTAL + transformVec * VectorOrientation::HORIZONTAL).len();
-		double ver = (cameraVec * VectorOrientation::VERTICAL + transformVec * VectorOrientation::VERTICAL).len();
-		Vector2D connVec = Line(getPosition(), transform->getPosition()).toVector().absolute();
-		double connHor = (connVec * VectorOrientation::HORIZONTAL).len();
-		double connVer = (connVec * VectorOrientation::VERTICAL).len();
+		double hor = ((cameraVec + transformVec) * VectorOrientation::HORIZONTAL).lenQ();
+		double ver = ((cameraVec + transformVec) * VectorOrientation::VERTICAL).lenQ();
+		Vector2D connVec = Line(pos, transform->getPosition()).toVector().absolute();
+		double connHor = (connVec * VectorOrientation::HORIZONTAL).lenQ();
+		double connVer = (connVec * VectorOrientation::VERTICAL).lenQ();
 		return hor > connHor && ver > connVer;
+	}
+
+	void onUpdate() {
+		this->pos = getPosition();
 	}
 
 	virtual GameObject* clone() {

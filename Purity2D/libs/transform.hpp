@@ -10,6 +10,7 @@ private:
 	int layer;
 	Vector2D scale;
 	Vector2D position;
+	Vector2D cachedPosition;
 	Rotation rotation;
 	vector<Line> lines;
 	Transform* parentTransform = nullptr;
@@ -143,6 +144,14 @@ public:
 
 	Component* clone() {
 		return new Transform(this);
+	}
+
+	void onUpdate() {
+		cachedPosition = position + (parentTransform != nullptr ? parentTransform->getPosition() : Vector2D::ZERO);
+	}
+
+	void onStart() {
+		cachedPosition = position + (parentTransform != nullptr ? parentTransform->getPosition() : Vector2D::ZERO);
 	}
 
 private:

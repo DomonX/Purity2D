@@ -171,6 +171,7 @@
     <ClCompile Include="sources\engine.cpp" />
     <ClCompile Include="sources\gameState.cpp" />
     <ClCompile Include="sources\keyboard.cpp" />
+    <ClCompile Include="sources\renderer.cpp" />
     <ClCompile Include="sources\time.cpp" />
     <ClCompile Include="sources\vector2d.cpp" />
   </ItemGroup>
@@ -183,8 +184,11 @@
     <ClInclude Include="libs\controller.hpp" />
     <ClInclude Include="libs\display.hpp" />
     <ClInclude Include="libs\engine.hpp" />
+    <ClInclude Include="libs\exampleScript.hpp" />
+    <ClInclude Include="libs\fowRenderer.hpp" />
     <ClInclude Include="libs\gameObject.hpp" />
     <ClInclude Include="libs\gameState.hpp" />
+    <ClInclude Include="libs\hudRenderer.hpp" />
     <ClInclude Include="libs\imageRenderer.hpp" />
     <ClInclude Include="libs\keyboard.hpp" />
     <ClInclude Include="libs\keyboardObserver.hpp" />

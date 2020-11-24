@@ -47,3 +47,12 @@ void Display::onStop() {
 		al_destroy_display(display);
 	}
 }
+
+void Display::fullscreen(bool mode) {
+	currentMode = mode ? ALLEGRO_FULLSCREEN_WINDOW : ALLEGRO_WINDOWED;
+	if (mode) {
+		Vector2D mainScreen = screens.at(currentAdapter);
+		setResolution(mainScreen.getX(), mainScreen.getY());
+	}
+	al_set_display_flag(display, currentMode, true);
+}

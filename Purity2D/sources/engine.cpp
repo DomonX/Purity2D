@@ -43,7 +43,7 @@ void Engine::onStart() {
 	gameState->onStart();
 	while (true) {
 		auto start = std::chrono::system_clock::now();
-		al_clear_to_color(al_map_rgb(255, 255, 255));		
+		al_clear_to_color(al_map_rgb(0, 0, 0));		
 		gameState->onUpdate();
 		keyboard->onUpdate();
 		al_flip_display();

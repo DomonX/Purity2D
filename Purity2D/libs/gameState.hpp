@@ -14,7 +14,6 @@ private:
 	Scene* currentScene;
 	Camera* currentCamera;
 	Display* display;
-
 public:
 	/*!
 		\brief Starts GameState
@@ -33,7 +32,7 @@ public:
 			return;
 		}
 		currentScene = temp;
-		currentCamera = temp->getCamera();
+		currentCamera = currentScene->getCamera();
 	}
 	/*!
 		\brief adds Scene to our game
@@ -85,6 +84,10 @@ public:
 	*/
 	Camera** getCameraHook() {
 		return &this->currentCamera;
+	}
+
+	Camera* getCurrentCamera() {
+		return this->currentCamera;
 	}
 
 	/*! \brief Lifecycle hook that is activated to inform about deleting GameState */

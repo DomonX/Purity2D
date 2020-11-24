@@ -1,15 +1,8 @@
 #pragma once
 #include "display.hpp"
 #include "gameState.hpp"
-#include "transform.hpp"
-#include "component.hpp"
-#include "camera.hpp"
-#include "scene.hpp"
-#include "gameObject.hpp"
-#include "renderer.hpp"
-#include "imageRenderer.hpp"
-#include "collider.hpp"
 #include "keyboard.hpp"
+#include "time.hpp"
 
 class Engine {
 private:
