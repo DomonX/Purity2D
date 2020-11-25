@@ -8,6 +8,7 @@
 #include "libs/hudRenderer.hpp"
 #include "libs/exampleScript.hpp"
 #include "libs/fowRenderer.hpp"
+#include "libs/lightRenderer.hpp"
 
 #define TILE_SIZE 16
 
@@ -45,7 +46,7 @@ int main() {
 	gs->addScene(testScene);
 
 	Asset* fov = new Asset("fov");
-	fov->load("fow4.png");
+	fov->load("fow3.png");
 
 	Asset* fd = new Asset("floor/fd");
 	fd->load("floor/f-d.jpg");
@@ -86,13 +87,12 @@ int main() {
 	Asset* bar = new Asset("bar");
 	bar->load("bar.png");
 
-	vector<GameObject*> grassTiles;
+	Asset* light = new Asset("light");
+	light->load("light.png");
 
 	// Creating Game Objects
 
-
-
-	for (int j = 0; j < 5; j++) {
+	for (int j = 0; j < 50; j++) {
 		int tunnel = j*6;
 		int line = 0;
 		mainScene->addGameObject(createTile(line, tunnel + 0, wlu));
@@ -109,7 +109,7 @@ int main() {
 		mainScene->addGameObject(createTile(line, tunnel + 4, wr));
 		line++;
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 50; i++) {
 			mainScene->addGameObject(createTile(line, tunnel + 0, wl));
 			mainScene->addGameObject(createTile(line, tunnel + 1, fl));
 			mainScene->addGameObject(createTile(line, tunnel + 2, fc));
@@ -132,6 +132,18 @@ int main() {
 		mainScene->addGameObject(createTile(line, tunnel + 4, wrd));
 		line++;
 	}
+
+	GameObject* lightg = new GameObject();
+	lightg->addComponent(light);
+	lightg->addComponent(new Transform(Vector2D(200, 200), Vector2D(0, 0), Rotation(0)));
+	lightg->addComponent(new LightRenderer());
+	mainScene->addGameObject(lightg);
+
+	GameObject* lightg2 = new GameObject();
+	lightg2->addComponent(light);
+	lightg2->addComponent(new Transform(Vector2D(200, 200), Vector2D(200, 200), Rotation(0)));
+	lightg2->addComponent(new LightRenderer());
+	mainScene->addGameObject(lightg2);
 
 
 	/*mainScene->addGameObject(createHud(0, 0, cam->getSize().getX(), cam->getSize().getY(), fov));*/

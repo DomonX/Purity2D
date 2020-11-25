@@ -192,6 +192,7 @@
     <ClInclude Include="libs\imageRenderer.hpp" />
     <ClInclude Include="libs\keyboard.hpp" />
     <ClInclude Include="libs\keyboardObserver.hpp" />
+    <ClInclude Include="libs\lightRenderer.hpp" />
     <ClInclude Include="libs\line.h" />
     <ClInclude Include="libs\renderable.hpp" />
     <ClInclude Include="libs\renderer.hpp" />

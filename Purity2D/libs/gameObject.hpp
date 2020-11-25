@@ -86,6 +86,16 @@ public:
 	}
 
 	/*!
+		@copydoc Component::onUpdate(Component*)
+		\see Component
+	*/
+	void onUpdateAlpha() {
+		for (Component* i : components) {
+			i->onUpdateAlpha();
+		}
+	}
+
+	/*!
 		@copydoc Component::onStart(Component*)
 		\see Component
 	*/

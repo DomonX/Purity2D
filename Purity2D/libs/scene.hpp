@@ -11,7 +11,6 @@ class Scene {
 private:
 	string name;
 	vector<GameObject*> objects;
-	vector<GameObject*> lights;
 	Camera* camera;
 	GameObject* fog;
 	ALLEGRO_BITMAP* screen;
@@ -46,10 +45,11 @@ public:
 		for (GameObject* i : objects) {
 			i->onUpdate();
 		}
-		for (GameObject* i : lights) {
-			i->onUpdate();
-		}
 		fog->onUpdate();
+		for (GameObject* i : objects) {
+			i->onUpdateAlpha();
+		}
+		fog->onUpdateAlpha();
 	}
 
 	/*!	\brief Lifecycle hook called when Scene is destroyed	*/
@@ -78,21 +78,6 @@ public:
 		}
 	}
 
-	/*!	\brief Add Light to Scene \see GameObject	*/
-	void addLight(GameObject* object) {
-		lights.push_back(object);
-	}
-
-	/*!	\brief Remove Light from Scene \see GameObject	*/
-	void removeLight(GameObject* object) {
-		for (GameObject* i : lights) {
-			if (i == object) {
-				i->onDelete();
-				free(i);
-			}
-		}
-	}
-
 	/*!	\brief Returns Camera of Scene \see Camera	*/
 	Camera * getCamera() {
 		return camera;
@@ -105,6 +90,4 @@ public:
 		this->fog->onStart();
 	}
 	
-
-
 };
