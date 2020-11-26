@@ -31,7 +31,7 @@ Display::Display() {
 		al_get_monitor_info(i, &monitor);
 		screens.push_back(Vector2D(monitor.x1, monitor.y2).absolute());
 	}
-	currentAdapter = 1;
+	currentAdapter = 0;
 	currentMode = ALLEGRO_WINDOWED;
 	createScreen();
 }
@@ -49,10 +49,27 @@ void Display::onStop() {
 }
 
 void Display::fullscreen(bool mode) {
-	currentMode = mode ? ALLEGRO_FULLSCREEN_WINDOW : ALLEGRO_WINDOWED;
+	int curr = mode ? ALLEGRO_FULLSCREEN_WINDOW : ALLEGRO_WINDOWED;
+	int bef = mode ? ALLEGRO_WINDOWED : ALLEGRO_FULLSCREEN_WINDOW;
+	currentMode = curr;
+	al_set_display_flag(display, curr, true);
+	al_set_display_flag(display, bef, false);
 	if (mode) {
-		Vector2D mainScreen = screens.at(currentAdapter);
-		setResolution(mainScreen.getX(), mainScreen.getY());
+		windowedSize = size / 2;
+		size = screens.at(currentAdapter);
 	}
-	al_set_display_flag(display, currentMode, true);
+	else {
+		size = windowedSize;
+	}
+}
+
+void Display::presentRendering(bool mode) {
+	if (mode && cachedPresentationSize == Vector2D::ZERO) {
+		cachedPresentationSize = size;
+		size = size / 2;
+	}
+	if (!mode && !(cachedPresentationSize == Vector2D::ZERO)) {
+		size = cachedPresentationSize;
+		cachedPresentationSize = Vector2D::ZERO;
+	}
 }

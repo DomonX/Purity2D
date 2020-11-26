@@ -54,6 +54,7 @@ public:
 		return assetSize;
 	}
 
+	/*!	@copydoc Component::clone()	*/
 	Component* clone() {
 		return this;
 	}

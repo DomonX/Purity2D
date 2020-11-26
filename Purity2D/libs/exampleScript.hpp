@@ -16,6 +16,8 @@ class ExampleScript: public Component, public KeyboardObserver {
 		Keyboard::get()->subscribe(ALLEGRO_KEY_7, this);
 		Keyboard::get()->subscribe(ALLEGRO_KEY_8, this);
 		Keyboard::get()->subscribe(ALLEGRO_KEY_9, this);
+		Keyboard::get()->subscribe(ALLEGRO_KEY_O, this);
+		Keyboard::get()->subscribe(ALLEGRO_KEY_P, this);
 	}
 
 	void onClick(int keycode) {
@@ -46,6 +48,12 @@ class ExampleScript: public Component, public KeyboardObserver {
 		if (keycode == ALLEGRO_KEY_9) {
 			Display::get()->fullscreen(false);
 		}
+		if (keycode == ALLEGRO_KEY_O) {
+			Display::get()->presentRendering(true);
+		}
+		if (keycode == ALLEGRO_KEY_P) {
+			Display::get()->presentRendering(false);
+		}
 	}
 
 	void onEnd() {
@@ -58,5 +66,7 @@ class ExampleScript: public Component, public KeyboardObserver {
 		Keyboard::get()->unsubscribe(ALLEGRO_KEY_7, this);
 		Keyboard::get()->unsubscribe(ALLEGRO_KEY_8, this);
 		Keyboard::get()->unsubscribe(ALLEGRO_KEY_9, this);
+		Keyboard::get()->unsubscribe(ALLEGRO_KEY_O, this);
+		Keyboard::get()->unsubscribe(ALLEGRO_KEY_P, this);
 	}
 };

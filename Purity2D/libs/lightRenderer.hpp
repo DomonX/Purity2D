@@ -2,6 +2,9 @@
 #include "imageRenderer.hpp"
 #include "gameState.hpp"
 class LightRenderer : public ImageRenderer {
+	void onUpdate() {
+		ImageRenderer::onUpdate();
+	}
 	void onUpdateAlpha() {
 		Asset* asset = getAsset();
 		ALLEGRO_BITMAP* bmp = asset->getImage();

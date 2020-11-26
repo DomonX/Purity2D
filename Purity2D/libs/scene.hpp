@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "gameObject.hpp"
 #include "camera.hpp"
 #include "asset.hpp"
@@ -11,12 +12,10 @@ class Scene {
 private:
 	string name;
 	vector<GameObject*> objects;
+	vector<GameObject*> lights;
 	Camera* camera;
 	GameObject* fog;
 	ALLEGRO_BITMAP* screen;
-
-	ALLEGRO_BITMAP* alphaChannel;
-	Vector2D alphaSize;
 
 public:
 	/*!	\brief Constructor of scene with given name \warning Name should be unique	*/
@@ -24,9 +23,10 @@ public:
 		this->name = name;
 		camera = new Camera();
 		screen = al_get_target_bitmap();
+		fog = new GameObject();
 	}
 
-	/*!	\brief Returns name of Scene	*/
+	/*!	\brief Returns name of Scene */
 	string getName() {
 		return name;
 	}
@@ -46,13 +46,13 @@ public:
 			i->onUpdate();
 		}
 		fog->onUpdate();
-		for (GameObject* i : objects) {
+		for (GameObject* i : lights) {
 			i->onUpdateAlpha();
 		}
 		fog->onUpdateAlpha();
 	}
 
-	/*!	\brief Lifecycle hook called when Scene is destroyed	*/
+	/*!	\brief Lifecycle hook called when Scene is destroyed */
 	void onDelete() {
 		camera->onDelete();
 		for (GameObject* i : objects) {
@@ -68,13 +68,33 @@ public:
 		objects.push_back(object);
 	}
 
+	/*!	\brief Add Light to Scene \see GameObject	*/
+	void addLight(GameObject* object) {
+		objects.push_back(object);
+		lights.push_back(object);
+	}
+
 	/*!	\brief Remove GameObject from Scene \see GameObject	*/
 	void removeGameObject(GameObject* object) {
-		for (GameObject* i : objects) {
-			if (i == object) {
-				i->onDelete();
-				free(i);
-			}
+		vector<GameObject*>::iterator it = find(objects.begin(), objects.end(), object);
+		if (it != objects.end()) {
+			objects.erase(it);
+			(*it)->onDelete();
+			free(*it);
+		}
+	}
+
+	/*!	\brief Remove Light from Scene \see GameObject	*/
+	void removeLight(GameObject* object) {
+		vector<GameObject*>::iterator itl = find(lights.begin(), lights.end(), object);
+		vector<GameObject*>::iterator ito = find(objects.begin(), objects.end(), object);
+		if (itl != lights.end()) {
+			objects.erase(itl);
+		}
+		if (ito != objects.end()) {
+			objects.erase(ito);
+			(*ito)->onDelete();
+			free(*ito);
 		}
 	}
 
@@ -85,9 +105,11 @@ public:
 
 	/*! \brief Creates fog on the Scene \see FogRenderer */
 	void createFog(GameObject* fog) {
+		this->fog->onDelete();
+		free(this->fog);
 		this->fog = fog;
 		this->fog->addComponent(new Transform(camera->getSize(), camera->getSize() / 2, Rotation(0)));
 		this->fog->onStart();
 	}
-	
+
 };

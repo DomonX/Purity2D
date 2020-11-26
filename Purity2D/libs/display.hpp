@@ -11,12 +11,14 @@ private:
 	static Display* instance;
 	vector<Vector2D> screens = vector<Vector2D>();
 	Vector2D size;
+	Vector2D cachedPresentationSize;
+	Vector2D windowedSize;
 	unsigned char currentAdapter;
 	unsigned int currentMode;
 	void createScreen();
 	Display();
 public:
-	/*! 
+	/*!
 		\brief Getter method for Display singleton
 		\returns Global Display element
 	*/
@@ -37,8 +39,15 @@ public:
 		\returns Vector of display size
 	*/
 
+	/*!
+		\brief Sets fullscreen to off or on
+	*/
 	void fullscreen(bool mode);
+
+	/*!	\brief returns size of display	*/
 	Vector2D getSize() {
 		return size;
 	}
+
+	void presentRendering(bool mode);
 };

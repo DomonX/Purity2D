@@ -145,11 +145,11 @@ public:
 	Component* clone() {
 		return new Transform(this);
 	}
-
+	/*! @copydoc Component::onUpdate() */
 	void onUpdate() {
 		cachedPosition = position + (parentTransform != nullptr ? parentTransform->getPosition() : Vector2D::ZERO);
 	}
-
+	/*! @copydoc Component::onStart() */
 	void onStart() {
 		cachedPosition = position + (parentTransform != nullptr ? parentTransform->getPosition() : Vector2D::ZERO);
 	}

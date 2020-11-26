@@ -74,6 +74,7 @@ public:
 		(*this->transform) = newTransform;
 	}
 
+	/*!	@copydoc Component::clone()	*/
 	virtual Component* clone() {
 		return new Controller();
 	}

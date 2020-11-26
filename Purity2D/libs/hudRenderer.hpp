@@ -7,4 +7,7 @@ class HudRenderer: public ImageRenderer {
 		Vector2D newScale = transform->getScale();
 		return Transform(newScale, newPosition, transform->getRotation());
 	}
+	bool isVisible() {
+		return true;
+	}
 };

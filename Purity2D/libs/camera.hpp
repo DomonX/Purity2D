@@ -59,10 +59,12 @@ public:
 		return hor > connHor && ver > connVer;
 	}
 
+	/*!	@copydoc Component::onUpdate()	*/
 	void onUpdate() {
 		this->pos = getPosition();
 	}
 
+	/*!	@copydoc Component::clone()	*/
 	virtual GameObject* clone() {
 		return this;
 	}

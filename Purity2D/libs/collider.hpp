@@ -75,6 +75,7 @@ public:
 		return true;
 	}
 
+	/*!	@copydoc Component::clone()	*/
 	Component* clone() {
 		return new Collider();
 	}

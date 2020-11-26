@@ -92,7 +92,7 @@ int main() {
 
 	// Creating Game Objects
 
-	for (int j = 0; j < 50; j++) {
+	for (int j = 0; j < 20; j++) {
 		int tunnel = j*6;
 		int line = 0;
 		mainScene->addGameObject(createTile(line, tunnel + 0, wlu));
@@ -109,7 +109,7 @@ int main() {
 		mainScene->addGameObject(createTile(line, tunnel + 4, wr));
 		line++;
 
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 80; i++) {
 			mainScene->addGameObject(createTile(line, tunnel + 0, wl));
 			mainScene->addGameObject(createTile(line, tunnel + 1, fl));
 			mainScene->addGameObject(createTile(line, tunnel + 2, fc));
@@ -137,14 +137,13 @@ int main() {
 	lightg->addComponent(light);
 	lightg->addComponent(new Transform(Vector2D(200, 200), Vector2D(0, 0), Rotation(0)));
 	lightg->addComponent(new LightRenderer());
-	mainScene->addGameObject(lightg);
+	mainScene->addLight(lightg);
 
 	GameObject* lightg2 = new GameObject();
 	lightg2->addComponent(light);
 	lightg2->addComponent(new Transform(Vector2D(200, 200), Vector2D(200, 200), Rotation(0)));
 	lightg2->addComponent(new LightRenderer());
-	mainScene->addGameObject(lightg2);
-
+	mainScene->addLight(lightg2);
 
 	/*mainScene->addGameObject(createHud(0, 0, cam->getSize().getX(), cam->getSize().getY(), fov));*/
 	mainScene->addGameObject(createHud(90, 10, 180, 20, bar));

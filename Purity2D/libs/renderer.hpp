@@ -13,6 +13,7 @@ protected:
 	Transform* transform = nullptr;
 	Camera** cameraHook = nullptr;
 	virtual Transform calculateNewTransform();
+	bool isRendered;
 	virtual bool isVisible() {
 		return (*cameraHook)->isVisible(transform);
 	}
@@ -23,7 +24,8 @@ public:
 	/*! @copydoc Component::onUpdate() */
 	void onUpdate() {
 		Component::onUpdate();
-		if (!renderConditions()) {
+		isRendered = renderConditions();
+		if (!isRendered) {
 			return;
 		}
 		onRender();
@@ -50,7 +52,7 @@ public:
 	bool virtual renderConditions() {
 		return transform != nullptr && isVisible();
 	}
-
+	/*! @copydoc Component::clone() */
 	virtual Component* clone() {
 		return new Renderer();
 	}
