@@ -1,7 +1,11 @@
 #pragma once
+#include <iostream>
+
 class Time {
 private:
 	double deltaTime;
+	double frameRate;
+	int frames;
 	static Time* instance;
 	Time();
 public:

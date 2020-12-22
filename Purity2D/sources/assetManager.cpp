@@ -2,7 +2,7 @@
 
 AssetManager* AssetManager::instance = nullptr;
 
-AssetManager* AssetManager::getAssetManager() {
+AssetManager* AssetManager::get() {
 	if (instance == nullptr) {
 		instance = new AssetManager();
 	}

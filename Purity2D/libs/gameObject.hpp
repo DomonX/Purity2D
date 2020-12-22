@@ -13,12 +13,9 @@ public:
 	GameObject() : Component() {
 		alreadyStarted = false;
 	}
-	/*!
-		\brief Adds Component do GameObject
-		\param component Component to add
-		\see Component
-	*/
+
 	void addComponent(Component* component) {
+		component->getGameObject(this);
 		for (Component* i : components) {
 			component->onGetOtherComponent(i);
 			i->onGetOtherComponent(component);
@@ -33,10 +30,6 @@ public:
 		/*sort(components.begin(), components.end(), [](Component* first, Component* second) { return first->getPriority() < first->getPriority(); });*/
 	}
 
-	/*!
-		\brief Adds child GameObject
-		\param gameObject GameObject to add
-	*/
 	void addGameObject(GameObject* gameObject) {
 		for (Component* i : components) {
 			gameObject->onGetParentComponent(i);
@@ -47,10 +40,6 @@ public:
 		}
 	}
 
-	/*!
-		\brief Removes child GameObject
-		\param gameObject GameObject to remove
-	*/
 	void removeGameObject(GameObject* gameObject) {
 		vector<GameObject*>::iterator iterator;
 		for (vector<GameObject*>::iterator i = children.begin(); i != children.end(); i++) {
@@ -65,40 +54,24 @@ public:
 		children.erase(iterator);
 	}
 
-	/*!
-		@copydoc Component::onGetParentComponent(Component*)
-		\see Component
-	*/
 	void onGetParentComponent(Component* component) {
 		for (Component* i : components) {
 			i->onGetParentComponent(component);
 		}
 	}
 
-	/*!
-		@copydoc Component::onUpdate(Component*)
-		\see Component
-	*/
 	void onUpdate() {
 		for (Component* i : components) {
 			i->onUpdate();
 		}
 	}
 
-	/*!
-		@copydoc Component::onUpdate(Component*)
-		\see Component
-	*/
 	void onUpdateAlpha() {
 		for (Component* i : components) {
 			i->onUpdateAlpha();
 		}
 	}
 
-	/*!
-		@copydoc Component::onStart(Component*)
-		\see Component
-	*/
 	void onStart() {
 		for (Component* i : components) {
 			i->onStart();
@@ -106,10 +79,6 @@ public:
 		alreadyStarted = true;
 	}
 
-	/*!
-		@copydoc Component::onDelete(Component*)
-		\see Component
-	*/
 	void onDelete() {
 		for (Component* i : components) {
 			free(i);
@@ -125,6 +94,26 @@ public:
 			o->addGameObject(gameObject->clone());
 		}
 		return o;
+	}
+
+	Component* getComponent(bool(*comparator)(Component*)) {
+		for (Component* component : components) {
+			if (comparator(component)) {
+				return component;
+			}
+		}
+		return nullptr;
+	}
+
+	template<class T> T* getComponent() {
+		T* temp = nullptr;
+		for (Component* component : components) {
+			temp = dynamic_cast<T*>(component);
+			if (temp) {
+				return temp;
+			}
+		}
+		return temp;
 	}
 
 };

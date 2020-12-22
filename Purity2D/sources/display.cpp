@@ -31,7 +31,7 @@ Display::Display() {
 		al_get_monitor_info(i, &monitor);
 		screens.push_back(Vector2D(monitor.x1, monitor.y2).absolute());
 	}
-	currentAdapter = 0;
+	currentAdapter = 1;
 	currentMode = ALLEGRO_WINDOWED;
 	createScreen();
 }

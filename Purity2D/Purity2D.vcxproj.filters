@@ -13,6 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\core">
+      <UniqueIdentifier>{d43e91e6-d9a1-4ef1-bbe6-d2c65cea3a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\core">
+      <UniqueIdentifier>{2acc4059-36f3-4da9-af0f-5cfb17baec9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\core\components">
+      <UniqueIdentifier>{562864f4-7243-483b-bd03-02c3a09da435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\core\core">
+      <UniqueIdentifier>{73f4f109-c859-4909-9f7b-d6e4c977a5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\core\engine">
+      <UniqueIdentifier>{649b2cd7-3412-48b2-b568-19a09a950867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\core\state">
+      <UniqueIdentifier>{b1314011-d051-4845-bb19-284a20642f4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\core\abstract">
+      <UniqueIdentifier>{2c3c132b-884d-4275-b989-b27d1d158d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\mesh">
+      <UniqueIdentifier>{0d628605-f34f-4512-98b0-1d76471da417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\plane">
+      <UniqueIdentifier>{a189e776-5cc4-4f59-850c-1a24eee85ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\core\components\renderer">
+      <UniqueIdentifier>{67e105e7-2910-4b2b-8b3d-83c88620db84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\core\components\visibility">
+      <UniqueIdentifier>{9958e996-1b39-4c1c-8bb7-dc1a1f166c94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -24,106 +57,124 @@
     <ClCompile Include="Purity2D.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="sources\display.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="sources\assetManager.cpp">
+      <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
     <ClCompile Include="sources\engine.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
-    <ClCompile Include="sources\vector2d.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="sources\display.cpp">
+      <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
     <ClCompile Include="sources\gameState.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\assetManager.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\time.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
     <ClCompile Include="sources\keyboard.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
     <ClCompile Include="sources\renderer.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\core</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\time.cpp">
+      <Filter>Pliki źródłowe\core</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\vector2d.cpp">
+      <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libs\camera.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\collider.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\component.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\display.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\engine.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\gameObject.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\gameState.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\line.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\renderer.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\rotation.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\scene.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\transform.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\vector2d.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\asset.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\assetManager.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\imageRenderer.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\time.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\controller.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\keyboard.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\keyboardObserver.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\renderable.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\hudRenderer.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="libs\exampleScript.hpp">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="libs\fowRenderer.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="libs\line.h">
+      <Filter>Pliki nagłówkowe\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\asset.hpp">
+      <Filter>Pliki nagłówkowe\core\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\collider.hpp">
+      <Filter>Pliki nagłówkowe\core\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\component.hpp">
+      <Filter>Pliki nagłówkowe\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\controller.hpp">
+      <Filter>Pliki nagłówkowe\core\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\engine.hpp">
+      <Filter>Pliki nagłówkowe\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\display.hpp">
+      <Filter>Pliki nagłówkowe\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\vector2d.hpp">
+      <Filter>Pliki nagłówkowe\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\transform.hpp">
+      <Filter>Pliki nagłówkowe\core\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\time.hpp">
+      <Filter>Pliki nagłówkowe\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\rotation.hpp">
+      <Filter>Pliki nagłówkowe\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\gameState.hpp">
+      <Filter>Pliki nagłówkowe\core\state</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\gameObject.hpp">
+      <Filter>Pliki nagłówkowe\core\state</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\camera.hpp">
+      <Filter>Pliki nagłówkowe\core\state</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\assetManager.hpp">
+      <Filter>Pliki nagłówkowe\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\scene.hpp">
+      <Filter>Pliki nagłówkowe\core\state</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\keyboard.hpp">
+      <Filter>Pliki nagłówkowe\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\keyboardObserver.hpp">
+      <Filter>Pliki nagłówkowe\core\abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshScene.hpp">
+      <Filter>Pliki nagłówkowe\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\planeScene.h">
+      <Filter>Pliki nagłówkowe\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\sagaElement.h">
+      <Filter>Pliki nagłówkowe\core\abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\mesh.hpp">
+      <Filter>Pliki nagłówkowe\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\shaderAsset.h">
+      <Filter>Pliki nagłówkowe\core\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fogRenderer.hpp">
+      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\hudRenderer.hpp">
+      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
     </ClInclude>
     <ClInclude Include="libs\lightRenderer.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\imageRenderer.hpp">
+      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\renderer.hpp">
+      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\cameraVisiblity.hpp">
+      <Filter>Pliki nagłówkowe\core\components\visibility</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\visibility.hpp">
+      <Filter>Pliki nagłówkowe\core\components\visibility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

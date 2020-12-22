@@ -6,7 +6,3 @@ Transform Renderer::calculateNewTransform() {
 	Vector2D newScale = transform->getScale() * GameState::get()->getViewScale();
 	return Transform(newScale, newPosition, transform->getRotation());
 }
-
-Renderer::Renderer() {
-	cameraHook = GameState::get()->getCameraHook();
-}

@@ -2,6 +2,8 @@
 #include "imageRenderer.hpp"
 #include "gameState.hpp"
 class LightRenderer : public ImageRenderer {
+public:
+	LightRenderer(): ImageRenderer() {}
 	void onUpdate() {
 		ImageRenderer::onUpdate();
 	}
@@ -13,7 +15,7 @@ class LightRenderer : public ImageRenderer {
 	}
 	Transform calculateLight() {
 		Vector2D newPosition = (transform->getPosition() - GameState::get()->getViewPosition());
-		Vector2D newScale = transform->getScale() * 3;
+		Vector2D newScale = transform->getScale() * 7;
 		return Transform(newScale, newPosition, transform->getRotation());
 	}
 };

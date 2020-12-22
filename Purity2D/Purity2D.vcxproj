@@ -99,6 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -114,6 +115,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +133,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,6 +154,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -179,13 +185,14 @@
     <ClInclude Include="libs\asset.hpp" />
     <ClInclude Include="libs\assetManager.hpp" />
     <ClInclude Include="libs\camera.hpp" />
+    <ClInclude Include="libs\cameraVisiblity.hpp" />
     <ClInclude Include="libs\collider.hpp" />
     <ClInclude Include="libs\component.hpp" />
     <ClInclude Include="libs\controller.hpp" />
     <ClInclude Include="libs\display.hpp" />
     <ClInclude Include="libs\engine.hpp" />
     <ClInclude Include="libs\exampleScript.hpp" />
-    <ClInclude Include="libs\fowRenderer.hpp" />
+    <ClInclude Include="libs\fogRenderer.hpp" />
     <ClInclude Include="libs\gameObject.hpp" />
     <ClInclude Include="libs\gameState.hpp" />
     <ClInclude Include="libs\hudRenderer.hpp" />
@@ -194,13 +201,18 @@
     <ClInclude Include="libs\keyboardObserver.hpp" />
     <ClInclude Include="libs\lightRenderer.hpp" />
     <ClInclude Include="libs\line.h" />
-    <ClInclude Include="libs\renderable.hpp" />
+    <ClInclude Include="libs\mesh.hpp" />
+    <ClInclude Include="libs\meshScene.hpp" />
+    <ClInclude Include="libs\planeScene.h" />
     <ClInclude Include="libs\renderer.hpp" />
     <ClInclude Include="libs\rotation.hpp" />
+    <ClInclude Include="libs\sagaElement.h" />
     <ClInclude Include="libs\scene.hpp" />
+    <ClInclude Include="libs\shaderAsset.h" />
     <ClInclude Include="libs\time.hpp" />
     <ClInclude Include="libs\transform.hpp" />
     <ClInclude Include="libs\vector2d.hpp" />
+    <ClInclude Include="libs\visibility.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,6 +2,7 @@
 
 #include "gameObject.hpp"
 #include "transform.hpp"
+#include <math.h>
 
 class Camera : public GameObject {
 private:
@@ -9,7 +10,7 @@ private:
 	Vector2D pos;
 public:
 	/*!
-		\brief Creates Camera with components: Transform and Collider
+		\brief Creates Camera with Transform
 	*/
 	Camera() {
 		cameraPosition = new Transform(Vector2D(1920 / 6, 1080 / 6), Vector2D(0, 0), Rotation(0));
@@ -49,14 +50,11 @@ public:
 		\param transform Transform which is checked if is visible by camera
 	*/
 	bool isVisible(Transform* transform) {
-		Vector2D cameraVec = (getSize() / 2).absolute();
+		Vector2D cameraVec = getSize() / 2;
 		Vector2D transformVec = transform->getScale().absolute();
-		double hor = ((cameraVec + transformVec) * VectorOrientation::HORIZONTAL).lenQ();
-		double ver = ((cameraVec + transformVec) * VectorOrientation::VERTICAL).lenQ();
-		Vector2D connVec = Line(pos, transform->getPosition()).toVector().absolute();
-		double connHor = (connVec * VectorOrientation::HORIZONTAL).lenQ();
-		double connVer = (connVec * VectorOrientation::VERTICAL).lenQ();
-		return hor > connHor && ver > connVer;
+		Vector2D transformPos = transform->getPosition();
+		Vector2D newVector = transformPos - pos;
+		return newVector.absolute().lenQ() - transformVec.lenQ() < cameraVec.lenQ();
 	}
 
 	/*!	@copydoc Component::onUpdate()	*/

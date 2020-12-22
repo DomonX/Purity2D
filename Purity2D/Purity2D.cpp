@@ -7,27 +7,95 @@
 #include "libs/controller.hpp"
 #include "libs/hudRenderer.hpp"
 #include "libs/exampleScript.hpp"
-#include "libs/fowRenderer.hpp"
+#include "libs/fogRenderer.hpp"
 #include "libs/lightRenderer.hpp"
+#include "libs/scene.hpp"
+#include "libs/planeScene.h"
+#include "libs/meshScene.hpp"
+#include "libs/mesh.hpp"
+#include "libs/cameraVisiblity.hpp"
+#include "libs/shaderAsset.h"
 
 #define TILE_SIZE 16
 
+Asset* fd;
+Asset* fu;
+Asset* fr;
+Asset* fl;
+Asset* fru;
+Asset* frd;
+Asset* fld;
+Asset* flu;
+Asset* fc;
+
+Asset* wd;
+Asset* wu;
+Asset* wr;
+Asset* wl;
+Asset* wru;
+Asset* wrd;
+Asset* wld;
+Asset* wlu;
+
 using namespace std;
 
-GameObject* createTile(int x, int y, Asset* wallType) {
-	GameObject* wall = new GameObject();
-	wall->addComponent(new ImageRenderer());
-	wall->addComponent(wallType);
-	wall->addComponent(new Transform(Vector2D(TILE_SIZE, TILE_SIZE), Vector2D(y * TILE_SIZE, x * TILE_SIZE), Rotation(0)));
-	return wall;
+GameObject* createTile(Asset* wallType) {
+	GameObject* tile = new GameObject();
+	tile->addComponent(new ImageRenderer());
+	tile->addComponent(new Visibility());
+	tile->addComponent(wallType);
+	tile->addComponent(new Transform(Vector2D(1, 1), Vector2D::ZERO, Rotation()));
+	return tile;
 }
 
 GameObject* createHud(int x, int y, int w, int h, Asset* hudType) {
 	GameObject* wall = new GameObject();
 	wall->addComponent(new HudRenderer());
+	wall->addComponent(new Visibility());
 	wall->addComponent(hudType);
 	wall->addComponent(new Transform(Vector2D(w, h), Vector2D(x, y), Rotation(0)));
 	return wall;
+}
+
+void createTunnel(int x, MeshScene* scene, int len) {
+	int j = 0;
+	scene->addGameObject(createTile(wlu), Vector2D(x + 0, j), 0);
+	scene->addGameObject(createTile(wu), Vector2D(x + 1, j), 0);
+	scene->addGameObject(createTile(wu), Vector2D(x + 2, j), 0);
+	scene->addGameObject(createTile(wu), Vector2D(x + 3, j), 0);
+	scene->addGameObject(createTile(wru), Vector2D(x + 4, j), 0);
+
+	j++;
+
+	scene->addGameObject(createTile(wl), Vector2D(x + 0, j), 0);
+	scene->addGameObject(createTile(flu), Vector2D(x + 1, j), 0);
+	scene->addGameObject(createTile(fu), Vector2D(x + 2, j), 0);
+	scene->addGameObject(createTile(fru), Vector2D(x + 3, j), 0);
+	scene->addGameObject(createTile(wr), Vector2D(x + 4, j), 0);
+
+	j++;
+
+	for (j; j < len; j++) {
+		scene->addGameObject(createTile(wl), Vector2D(x + 0, j), 0);
+		scene->addGameObject(createTile(fl), Vector2D(x + 1, j), 0);
+		scene->addGameObject(createTile(fc), Vector2D(x + 2, j), 0);
+		scene->addGameObject(createTile(fr), Vector2D(x + 3, j), 0);
+		scene->addGameObject(createTile(wr), Vector2D(x + 4, j), 0);
+	}
+
+	scene->addGameObject(createTile(wl), Vector2D(x + 0, j), 0);
+	scene->addGameObject(createTile(fld), Vector2D(x + 1, j), 0);
+	scene->addGameObject(createTile(fd), Vector2D(x + 2, j), 0);
+	scene->addGameObject(createTile(frd), Vector2D(x + 3, j), 0);
+	scene->addGameObject(createTile(wr), Vector2D(x + 4, j), 0);
+
+	j++;
+
+	scene->addGameObject(createTile(wld), Vector2D(x + 0, j), 0);
+	scene->addGameObject(createTile(wd), Vector2D(x + 1, j), 0);
+	scene->addGameObject(createTile(wd), Vector2D(x + 2, j), 0);
+	scene->addGameObject(createTile(wd), Vector2D(x + 3, j), 0);
+	scene->addGameObject(createTile(wrd), Vector2D(x + 4, j), 0);
 }
 
 int main() {
@@ -37,152 +105,98 @@ int main() {
 	en->onInit();
 
 	// Creating Scenes
-	Scene* mainScene = new Scene("Main");
+	MeshScene* mainScene = new MeshScene("Main", 16);
 	Camera* cam = mainScene->getCamera();
 	gs->addScene(mainScene);
 
-	Scene* testScene = new Scene("Main2");
+	PlaneScene* testScene = new PlaneScene("Main2");
 	Camera* cam2 = testScene->getCamera();
 	gs->addScene(testScene);
 
-	Asset* fov = new Asset("fov");
-	fov->load("fow3.png");
+	Asset* fov = new Asset("fow3.png");
 
-	Asset* fd = new Asset("floor/fd");
-	fd->load("floor/f-d.jpg");
-	Asset* fu = new Asset("floor/fu");
-	fu->load("floor/f-u.jpg");
-	Asset* fr = new Asset("floor/fr");
-	fr->load("floor/f-r.jpg");
-	Asset* fl = new Asset("floor/fl");
-	fl->load("floor/f-l.jpg");
-	Asset* fru = new Asset("floor/fru");
-	fru->load("floor/f-ru.jpg");
-	Asset* frd = new Asset("floor/frd");
-	frd->load("floor/f-rd.jpg");
-	Asset* fld = new Asset("floor/fld");
-	fld->load("floor/f-ld.jpg");
-	Asset* flu = new Asset("floor/flu");
-	flu->load("floor/f-lu.jpg");
-	Asset* fc = new Asset("floor/fc");
-	fc->load("floor/f-c.jpg");
+	Asset* bar = new Asset("bar.png");
 
-	Asset* wd = new Asset("wall/wd");
-	wd->load("wall/w-d.jpg");
-	Asset* wu = new Asset("wall/wu");
-	wu->load("wall/w-u.jpg");
-	Asset* wr = new Asset("wall/wr");
-	wr->load("wall/w-r.jpg");
-	Asset* wl = new Asset("wall/wl");
-	wl->load("wall/w-l.jpg");
-	Asset* wru = new Asset("wall/wru");
-	wru->load("wall/w-ru.jpg");
-	Asset* wrd = new Asset("wall/wrd");
-	wrd->load("wall/w-rd.jpg");
-	Asset* wld = new Asset("wall/wld");
-	wld->load("wall/w-ld.jpg");
-	Asset* wlu = new Asset("wall/wlu");
-	wlu->load("wall/w-lu.jpg");
+	Asset* light = new Asset("light.png");
 
-	Asset* bar = new Asset("bar");
-	bar->load("bar.png");
+	PartitionConfig wallShader = PartitionConfig("SimpleShaders.png", 2, 2);
+	vector<ALLEGRO_BITMAP*>	shaders = AssetManager::get()->partition(wallShader);
 
-	Asset* light = new Asset("light");
-	light->load("light.png");
+	ALLEGRO_BITMAP* floor = AssetManager::get()->occupy("floor.jpg");
+	ALLEGRO_BITMAP* wall = AssetManager::get()->occupy("wall.png");
+
+	fd = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::DOWN) });
+	fu = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::UP) });
+	fr = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::RIGHT) });
+	fl = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::LEFT) });
+	fru = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::RIGHT), ShaderPart(1, SideShaderRotation::UP) });
+	frd = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::RIGHT), ShaderPart(1, SideShaderRotation::DOWN) });
+	fld = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::LEFT), ShaderPart(1, SideShaderRotation::DOWN) });
+	flu = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::LEFT), ShaderPart(1, SideShaderRotation::UP) });
+	fc = new Asset("floor.jpg");
+
+	wd = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::UP ) });
+	wu = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::DOWN ), ShaderPart(1, SideShaderRotation::UP) });
+	wr = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::RIGHT), ShaderPart(1, SideShaderRotation::LEFT) });
+	wl = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::LEFT), ShaderPart(1, SideShaderRotation::RIGHT) });
+	wru = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::UP), ShaderPart(0, SideShaderRotation::RIGHT), ShaderPart(3, CornerShaderRotation::LEFTDOWN) });
+	wrd = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::DOWN), ShaderPart(0, SideShaderRotation::RIGHT), ShaderPart(3, CornerShaderRotation::LEFTUP) });
+	wld = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::DOWN), ShaderPart(0, SideShaderRotation::LEFT), ShaderPart(3, CornerShaderRotation::RIGHTUP) });
+	wlu = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::UP), ShaderPart(0, SideShaderRotation::LEFT), ShaderPart(3, CornerShaderRotation::RIGHTDOWN) });
 
 	// Creating Game Objects
 
-	for (int j = 0; j < 20; j++) {
-		int tunnel = j*6;
-		int line = 0;
-		mainScene->addGameObject(createTile(line, tunnel + 0, wlu));
-		mainScene->addGameObject(createTile(line, tunnel + 1, wu));
-		mainScene->addGameObject(createTile(line, tunnel + 2, wu));
-		mainScene->addGameObject(createTile(line, tunnel + 3, wu));
-		mainScene->addGameObject(createTile(line, tunnel + 4, wru));
-		line++;
+	int i = 0;
 
-		mainScene->addGameObject(createTile(line, tunnel + 0, wl));
-		mainScene->addGameObject(createTile(line, tunnel + 1, flu));
-		mainScene->addGameObject(createTile(line, tunnel + 2, fu));
-		mainScene->addGameObject(createTile(line, tunnel + 3, fru));
-		mainScene->addGameObject(createTile(line, tunnel + 4, wr));
-		line++;
-
-		for (int i = 0; i < 80; i++) {
-			mainScene->addGameObject(createTile(line, tunnel + 0, wl));
-			mainScene->addGameObject(createTile(line, tunnel + 1, fl));
-			mainScene->addGameObject(createTile(line, tunnel + 2, fc));
-			mainScene->addGameObject(createTile(line, tunnel + 3, fr));
-			mainScene->addGameObject(createTile(line, tunnel + 4, wr));
-			line++;
-		}
-
-		mainScene->addGameObject(createTile(line, tunnel + 0, wl));
-		mainScene->addGameObject(createTile(line, tunnel + 1, fld));
-		mainScene->addGameObject(createTile(line, tunnel + 2, fd));
-		mainScene->addGameObject(createTile(line, tunnel + 3, frd));
-		mainScene->addGameObject(createTile(line, tunnel + 4, wr));
-		line++;
-
-		mainScene->addGameObject(createTile(line, tunnel + 0, wld));
-		mainScene->addGameObject(createTile(line, tunnel + 1, wd));
-		mainScene->addGameObject(createTile(line, tunnel + 2, wd));
-		mainScene->addGameObject(createTile(line, tunnel + 3, wd));
-		mainScene->addGameObject(createTile(line, tunnel + 4, wrd));
-		line++;
+	for (i = 0; i < 100; i++) {
+		createTunnel(i*6, mainScene, 100);
 	}
+
+	/*for (i = -100; i < 100; i++) {
+		for (j = -100; j < 100; j++) {
+			GameObject* tile = new GameObject();
+			tile->addComponent(new ImageRenderer());
+			tile->addComponent(fc);
+			tile->addComponent(new Transform(Vector2D(1,1), Vector2D::ZERO, Rotation()));
+			mainScene->addGameObject(tile, Vector2D(i, j), 0);
+		}
+	}*/
 
 	GameObject* lightg = new GameObject();
 	lightg->addComponent(light);
-	lightg->addComponent(new Transform(Vector2D(200, 200), Vector2D(0, 0), Rotation(0)));
+	lightg->addComponent(new Transform(Vector2D(50, 50), Vector2D(0, 0), Rotation(0)));
+	lightg->addComponent(new CameraVisibility());
 	lightg->addComponent(new LightRenderer());
 	mainScene->addLight(lightg);
 
 	GameObject* lightg2 = new GameObject();
 	lightg2->addComponent(light);
-	lightg2->addComponent(new Transform(Vector2D(200, 200), Vector2D(200, 200), Rotation(0)));
+	lightg2->addComponent(new Transform(Vector2D(50, 50), Vector2D(200, 200), Rotation(0)));
+	lightg2->addComponent(new CameraVisibility());
 	lightg2->addComponent(new LightRenderer());
 	mainScene->addLight(lightg2);
 
-	/*mainScene->addGameObject(createHud(0, 0, cam->getSize().getX(), cam->getSize().getY(), fov));*/
-	mainScene->addGameObject(createHud(90, 10, 180, 20, bar));
+	//mainScene->addGameObject(createHud(90, 10, 180, 20, bar));
 	
-	GameObject* script = new GameObject();
+	/*GameObject* script = new GameObject();
 	script->addComponent(new ExampleScript());
-	mainScene->addGameObject(script);
+	mainScene->addGameObject(script);*/
 
 	GameObject* player = new GameObject();
-	player->addComponent(new Transform(Vector2D(15, 15), Vector2D(20, 20), Rotation(0), 1));
+	player->addComponent(new Transform(Vector2D(1, 1), Vector2D::ZERO, Rotation(0), 1));
 	player->addComponent(new Renderer());
+	player->addComponent(new CameraVisibility());
 	player->addComponent(new Collider());
 	player->addComponent(new Controller());
-	mainScene->addGameObject(player);
+	mainScene->addGameObject(player, Vector2D::ZERO, 1);
 	player->addGameObject(cam);
 
-	GameObject* fogOfWar = new GameObject();
-	fogOfWar->addComponent(new FowRenderer());
-	fogOfWar->addComponent(fov);
-	mainScene->createFog(fogOfWar);
-
-
-	GameObject* test3 = new GameObject();
-	test3->addComponent(new Transform(Vector2D(300, 300), Vector2D(0, 0), Rotation(0)));
-	test3->addComponent(new Renderer());
-	testScene->addGameObject(test3);
-
-	GameObject* player2 = new GameObject();
-	player2->addComponent(new Transform(Vector2D(15, 15), Vector2D(20, 20), Rotation(0), 1));
-	player2->addComponent(new Renderer());
-	player2->addComponent(new Collider());
-	player2->addComponent(new Controller());
-	testScene->addGameObject(player2);
-	player2->addGameObject(cam2);
+	mainScene->addScript(new ExampleScript());
 
 	// Setting Up scene
 	gs->switchScene("Main");
 
-	Display::get()->setResolution(1920 / 2, 1080 / 2);
+	Display::get()->setResolution(1920 / 1.2, 1080 / 1.2);
 
 	en->onStart();
 	en->onStop();

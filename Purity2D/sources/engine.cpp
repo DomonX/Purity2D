@@ -50,7 +50,7 @@ void Engine::onStart() {
 		auto end = std::chrono::system_clock::now();
 		std::chrono::duration<double> elapsedSeconds = end - start;
 		time->setDeltaTime(elapsedSeconds.count());
-		cout << 1 / elapsedSeconds.count() << endl;
+		//cout << 1 / elapsedSeconds.count() << endl;
 	}
 }
 
