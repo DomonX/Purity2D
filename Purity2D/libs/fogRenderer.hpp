@@ -34,9 +34,8 @@ public:
 	}
 
 	void onRender() {
-		Asset* asset = getAsset();
-		ALLEGRO_BITMAP* assetBitmap = asset->getImage();
-		Vector2D assetSize = asset->getImageSize();
+		ALLEGRO_BITMAP* assetBitmap = image->getImage();
+		Vector2D assetSize = image->getImageSize();
 		al_draw_scaled_bitmap(assetBitmap, 0, 0, assetSize.getX(), assetSize.getY(), 0, 0, bmpSize.getX(), bmpSize.getY(), 0);
 	}
 

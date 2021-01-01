@@ -46,6 +46,9 @@
     <Filter Include="Pliki nagłówkowe\core\components\visibility">
       <UniqueIdentifier>{9958e996-1b39-4c1c-8bb7-dc1a1f166c94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\draw">
+      <UniqueIdentifier>{cebe83ce-f7b1-4c72-8d13-dbc0683880ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -80,6 +83,12 @@
     </ClCompile>
     <ClCompile Include="sources\vector2d.cpp">
       <Filter>Pliki źródłowe\core</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\objectFactory.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\drawDecoder.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +184,39 @@
     </ClInclude>
     <ClInclude Include="libs\visibility.hpp">
       <Filter>Pliki nagłówkowe\core\components\visibility</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshLoader.hpp">
+      <Filter>Pliki nagłówkowe\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\objectFactory.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\drawDecoder.hpp">
+      <Filter>Pliki nagłówkowe\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\wallShader.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\floorShader.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshHolder.hpp">
+      <Filter>Pliki nagłówkowe\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshController.hpp">
+      <Filter>Pliki nagłówkowe\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\PlayerMovement.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshCollider.hpp">
+      <Filter>Pliki nagłówkowe\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\sprite.hpp">
+      <Filter>Pliki nagłówkowe\core\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\animator.hpp">
+      <Filter>Pliki nagłówkowe\core\components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

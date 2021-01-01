@@ -2,7 +2,6 @@
 
 #include "component.hpp"
 
-
 class Visibility : public Component {
 public:
 	virtual bool isVisible() {

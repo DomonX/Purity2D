@@ -174,14 +174,17 @@
     <ClCompile Include="Purity2D.cpp" />
     <ClCompile Include="sources\assetManager.cpp" />
     <ClCompile Include="sources\display.cpp" />
+    <ClCompile Include="sources\drawDecoder.cpp" />
     <ClCompile Include="sources\engine.cpp" />
     <ClCompile Include="sources\gameState.cpp" />
     <ClCompile Include="sources\keyboard.cpp" />
+    <ClCompile Include="sources\objectFactory.cpp" />
     <ClCompile Include="sources\renderer.cpp" />
     <ClCompile Include="sources\time.cpp" />
     <ClCompile Include="sources\vector2d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="libs\animator.hpp" />
     <ClInclude Include="libs\asset.hpp" />
     <ClInclude Include="libs\assetManager.hpp" />
     <ClInclude Include="libs\camera.hpp" />
@@ -190,8 +193,10 @@
     <ClInclude Include="libs\component.hpp" />
     <ClInclude Include="libs\controller.hpp" />
     <ClInclude Include="libs\display.hpp" />
+    <ClInclude Include="libs\drawDecoder.hpp" />
     <ClInclude Include="libs\engine.hpp" />
     <ClInclude Include="libs\exampleScript.hpp" />
+    <ClInclude Include="libs\floorShader.hpp" />
     <ClInclude Include="libs\fogRenderer.hpp" />
     <ClInclude Include="libs\gameObject.hpp" />
     <ClInclude Include="libs\gameState.hpp" />
@@ -202,22 +207,33 @@
     <ClInclude Include="libs\lightRenderer.hpp" />
     <ClInclude Include="libs\line.h" />
     <ClInclude Include="libs\mesh.hpp" />
+    <ClInclude Include="libs\meshCollider.hpp" />
+    <ClInclude Include="libs\meshController.hpp" />
+    <ClInclude Include="libs\meshHolder.hpp" />
+    <ClInclude Include="libs\meshLoader.hpp" />
     <ClInclude Include="libs\meshScene.hpp" />
+    <ClInclude Include="libs\objectFactory.hpp" />
     <ClInclude Include="libs\planeScene.h" />
+    <ClInclude Include="libs\PlayerMovement.hpp" />
     <ClInclude Include="libs\renderer.hpp" />
     <ClInclude Include="libs\rotation.hpp" />
     <ClInclude Include="libs\sagaElement.h" />
     <ClInclude Include="libs\scene.hpp" />
     <ClInclude Include="libs\shaderAsset.h" />
+    <ClInclude Include="libs\sprite.hpp" />
     <ClInclude Include="libs\time.hpp" />
     <ClInclude Include="libs\transform.hpp" />
     <ClInclude Include="libs\vector2d.hpp" />
     <ClInclude Include="libs\visibility.hpp" />
+    <ClInclude Include="libs\wallShader.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\AllegroDeps.1.11.0\build\native\AllegroDeps.targets" Condition="Exists('..\packages\AllegroDeps.1.11.0\build\native\AllegroDeps.targets')" />
     <Import Project="..\packages\Allegro.5.2.6\build\native\Allegro.targets" Condition="Exists('..\packages\Allegro.5.2.6\build\native\Allegro.targets')" />
+    <Import Project="..\packages\boost.1.72.0.0\build\boost.targets" Condition="Exists('..\packages\boost.1.72.0.0\build\boost.targets')" />
+    <Import Project="..\packages\rapidxml.1.13\build\native\rapidxml.targets" Condition="Exists('..\packages\rapidxml.1.13\build\native\rapidxml.targets')" />
+    <Import Project="..\packages\rapidjson.1.0.2\build\native\rapidjson.targets" Condition="Exists('..\packages\rapidjson.1.0.2\build\native\rapidjson.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -225,5 +241,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\AllegroDeps.1.11.0\build\native\AllegroDeps.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AllegroDeps.1.11.0\build\native\AllegroDeps.targets'))" />
     <Error Condition="!Exists('..\packages\Allegro.5.2.6\build\native\Allegro.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Allegro.5.2.6\build\native\Allegro.targets'))" />
+    <Error Condition="!Exists('..\packages\boost.1.72.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.72.0.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\rapidxml.1.13\build\native\rapidxml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\rapidxml.1.13\build\native\rapidxml.targets'))" />
+    <Error Condition="!Exists('..\packages\rapidjson.1.0.2\build\native\rapidjson.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\rapidjson.1.0.2\build\native\rapidjson.targets'))" />
   </Target>
 </Project>

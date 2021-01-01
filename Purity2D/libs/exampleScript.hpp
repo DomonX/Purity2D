@@ -40,7 +40,7 @@ class ExampleScript: public Component, public KeyboardObserver {
 			GameState::get()->switchScene("Main");
 		}
 		if (keycode == ALLEGRO_KEY_7) {
-			GameState::get()->switchScene("Main2");
+			GameState::get()->switchScene("Second");
 		}
 		if (keycode == ALLEGRO_KEY_8) {
 			Display::get()->fullscreen(true);

@@ -14,6 +14,7 @@ protected:
 	string name;
 	Camera* camera;
 	GameObject* fog;
+	GameObject* player;
 public:
 	Scene(string name) {
 		this->name = name;
@@ -27,6 +28,10 @@ public:
 
 	Camera * getCamera() {
 		return camera;
+	}
+
+	GameObject** getPlayer() {
+		return &player;
 	}
 
 protected:

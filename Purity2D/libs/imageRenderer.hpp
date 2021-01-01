@@ -6,18 +6,9 @@
 class ImageRenderer : public Renderer {
 protected:
 	Asset* image = nullptr;
-	Asset* externalAssetHook = nullptr;
 	ALLEGRO_COLOR tint;
 	bool isTinted;
-	virtual Asset* getAsset() {
-		if (externalAssetHook != nullptr) {
-			return externalAssetHook;
-		}
-		if (image != nullptr) {
-			return image;
-		}
-		return nullptr;
-	}
+
 	void renderImage(ALLEGRO_BITMAP* image, Transform current, Vector2D size) {
 		Vector2D currentScale = current.getScale();
 		Vector2D currentPosition = current.getPosition();
@@ -65,17 +56,13 @@ public:
 		storeIfIsInstance(&image, component);
 	}
 	void onRender() {
-		Asset* asset = getAsset();
-		ALLEGRO_BITMAP* bmp = asset->getImage();
+		ALLEGRO_BITMAP* bmp = image->getImage();
 		Transform current = calculateNewTransform();
-		renderImage(bmp, current, asset->getImageSize());
-	}
-	Asset** hookAsset() {
-		return &externalAssetHook;
+		renderImage(bmp, current, image->getImageSize());
 	}
 
 	bool renderConditions() {
-		return Renderer::renderConditions() && (image != nullptr || externalAssetHook != nullptr);
+		return Renderer::renderConditions() && image != nullptr;
 	}
 
 	virtual Component* clone() {

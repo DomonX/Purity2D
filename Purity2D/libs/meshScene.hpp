@@ -1,6 +1,7 @@
 #pragma once
 #include "mesh.hpp"
 #include "scene.hpp"
+#include "meshHolder.hpp"
 
 class MeshScene : public Scene {
 private:
@@ -16,9 +17,9 @@ public:
 
 	void onStart() {
 		camera->onStart();
-		for (pair<Vector2D, map<int, GameObject*>> position : mesh->objects) {
-			for (pair<int, GameObject*> layer: position.second) {
-				layer.second->onStart();
+		for (pair<int, map<Vector2D, GameObject*>> layer : mesh->objects) {
+			for (pair<Vector2D, GameObject*> object : layer.second) {
+				object.second->onStart();
 			}
 		}
 		for (Component* script : scripts) {
@@ -32,10 +33,13 @@ public:
 		Vector2D pos = getPosition();
 		Vector2D begin = (pos - (size / 2)).roundDown();
 		Vector2D end = (pos + (size / 2)).round();
-		for (int i = begin.getX(); i < end.getX(); i++) {
-			for (int j = begin.getY(); j < end.getY(); j++) {
-				for (pair<int, GameObject*> object : mesh->objects[Vector2D(i, j)]) {
-					object.second->onUpdate();
+		for (pair<int, map<Vector2D, GameObject*>> layer : mesh->objects) {
+			for (int i = begin.getX(); i < end.getX(); i++) {
+				for (int j = begin.getY(); j < end.getY(); j++) {
+					GameObject* obj = layer.second[Vector2D(i, j)];
+					if (obj) {
+						obj->onUpdate();
+					}
 				}
 			}
 		}
@@ -73,6 +77,7 @@ public:
 
 	void addGameObject(GameObject* object, Vector2D position, int layer) {
 		Transform* tr = object->getComponent<Transform>();
+		object->addComponent(new MeshHolder(&mesh, position, layer));
 		(*tr) = Transform(tr->getScale() * mesh->getSize(), position * mesh->getSize(), Rotation());
 		mesh->add(object, position, layer);
 	}
@@ -92,5 +97,9 @@ public:
 
 	void addScript(Component* script) {
 		this->scripts.push_back(script);
+	}
+
+	Vector2D calculatePosition(Vector2D position) {
+		return this->mesh->calculatePosition(position);
 	}
 };

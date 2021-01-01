@@ -70,6 +70,7 @@ public:
         if(orientation == HORIZONTAL) {
             return Vector2D(getX(), 0);
         }
+		return Vector2D(0, 0);
     }
 
 	bool operator>(Vector2D vec) {

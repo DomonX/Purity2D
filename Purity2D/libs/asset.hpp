@@ -41,7 +41,7 @@ protected:
 		this->path = "";
 	}
 
-	void load() {
+	virtual void load() {
 		asset = AssetManager::get()->occupy(path);
 		assetSize = Vector2D(al_get_bitmap_width(asset), al_get_bitmap_height(asset));
 	}

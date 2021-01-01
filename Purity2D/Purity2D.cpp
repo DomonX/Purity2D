@@ -1,7 +1,4 @@
 #include <iostream>
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_image.h>
 #include "libs/engine.hpp"
 #include "libs/keyboard.hpp"
 #include "libs/controller.hpp"
@@ -9,189 +6,123 @@
 #include "libs/exampleScript.hpp"
 #include "libs/fogRenderer.hpp"
 #include "libs/lightRenderer.hpp"
-#include "libs/scene.hpp"
-#include "libs/planeScene.h"
 #include "libs/meshScene.hpp"
 #include "libs/mesh.hpp"
 #include "libs/cameraVisiblity.hpp"
 #include "libs/shaderAsset.h"
-
-#define TILE_SIZE 16
-
-Asset* fd;
-Asset* fu;
-Asset* fr;
-Asset* fl;
-Asset* fru;
-Asset* frd;
-Asset* fld;
-Asset* flu;
-Asset* fc;
-
-Asset* wd;
-Asset* wu;
-Asset* wr;
-Asset* wl;
-Asset* wru;
-Asset* wrd;
-Asset* wld;
-Asset* wlu;
+#include "libs/meshLoader.hpp"
+#include "libs/objectFactory.hpp"
+#include "libs/drawDecoder.hpp"
+#include "libs/wallShader.hpp"
+#include "libs/floorShader.hpp"
+#include "libs/meshController.hpp"
+#include "libs/PlayerMovement.hpp"
+#include "libs/meshCollider.hpp"
+#include "libs/sprite.hpp"
+#include "libs/animator.hpp"
 
 using namespace std;
 
-GameObject* createTile(Asset* wallType) {
+GameObject* createWall(CreationData data) {
 	GameObject* tile = new GameObject();
+	MeshAdjacent* ad = static_cast<MeshAdjacent*>(data.extra);
 	tile->addComponent(new ImageRenderer());
 	tile->addComponent(new Visibility());
-	tile->addComponent(wallType);
+	Colliders colliders = { { true, true, true, true, false, false, false, false } };
+	tile->addComponent(new MeshCollider(colliders));
+	tile->addComponent(new ShaderAsset("wall.png", PartitionConfig("SimpleShaders.png", 2, 2), WallShader::shade(ad)));
 	tile->addComponent(new Transform(Vector2D(1, 1), Vector2D::ZERO, Rotation()));
+	MeshScene* scene = dynamic_cast<MeshScene*>(data.scene);
+	scene->addGameObject(tile, data.position, 0);
 	return tile;
 }
 
-GameObject* createHud(int x, int y, int w, int h, Asset* hudType) {
-	GameObject* wall = new GameObject();
-	wall->addComponent(new HudRenderer());
-	wall->addComponent(new Visibility());
-	wall->addComponent(hudType);
-	wall->addComponent(new Transform(Vector2D(w, h), Vector2D(x, y), Rotation(0)));
-	return wall;
+GameObject* createTorch(CreationData data) {
+	GameObject* torch = new GameObject();
+	torch->addComponent(new ImageRenderer());
+	torch->addComponent(new Visibility());
+	torch->addComponent(new Asset("torch.png"));
+	torch->addComponent(new Transform(Vector2D(0.5, 0.5), Vector2D::ZERO, Rotation()));
+	MeshScene* scene = dynamic_cast<MeshScene*>(data.scene);
+	scene->addGameObject(torch, data.position, 1);
+	GameObject* light = new GameObject();
+	light->addComponent(new Transform(Vector2D(40, 40), scene->calculatePosition(data.position), Rotation()));
+	light->addComponent(new LightRenderer());
+	light->addComponent(new Asset("light.png"));
+	scene->addLight(light);
+	return torch;
 }
 
-void createTunnel(int x, MeshScene* scene, int len) {
-	int j = 0;
-	scene->addGameObject(createTile(wlu), Vector2D(x + 0, j), 0);
-	scene->addGameObject(createTile(wu), Vector2D(x + 1, j), 0);
-	scene->addGameObject(createTile(wu), Vector2D(x + 2, j), 0);
-	scene->addGameObject(createTile(wu), Vector2D(x + 3, j), 0);
-	scene->addGameObject(createTile(wru), Vector2D(x + 4, j), 0);
 
-	j++;
-
-	scene->addGameObject(createTile(wl), Vector2D(x + 0, j), 0);
-	scene->addGameObject(createTile(flu), Vector2D(x + 1, j), 0);
-	scene->addGameObject(createTile(fu), Vector2D(x + 2, j), 0);
-	scene->addGameObject(createTile(fru), Vector2D(x + 3, j), 0);
-	scene->addGameObject(createTile(wr), Vector2D(x + 4, j), 0);
-
-	j++;
-
-	for (j; j < len; j++) {
-		scene->addGameObject(createTile(wl), Vector2D(x + 0, j), 0);
-		scene->addGameObject(createTile(fl), Vector2D(x + 1, j), 0);
-		scene->addGameObject(createTile(fc), Vector2D(x + 2, j), 0);
-		scene->addGameObject(createTile(fr), Vector2D(x + 3, j), 0);
-		scene->addGameObject(createTile(wr), Vector2D(x + 4, j), 0);
-	}
-
-	scene->addGameObject(createTile(wl), Vector2D(x + 0, j), 0);
-	scene->addGameObject(createTile(fld), Vector2D(x + 1, j), 0);
-	scene->addGameObject(createTile(fd), Vector2D(x + 2, j), 0);
-	scene->addGameObject(createTile(frd), Vector2D(x + 3, j), 0);
-	scene->addGameObject(createTile(wr), Vector2D(x + 4, j), 0);
-
-	j++;
-
-	scene->addGameObject(createTile(wld), Vector2D(x + 0, j), 0);
-	scene->addGameObject(createTile(wd), Vector2D(x + 1, j), 0);
-	scene->addGameObject(createTile(wd), Vector2D(x + 2, j), 0);
-	scene->addGameObject(createTile(wd), Vector2D(x + 3, j), 0);
-	scene->addGameObject(createTile(wrd), Vector2D(x + 4, j), 0);
+GameObject* createFloor(CreationData data) {
+	GameObject* tile = new GameObject();
+	MeshAdjacent* ad = static_cast<MeshAdjacent*>(data.extra);
+	tile->addComponent(new ImageRenderer());
+	tile->addComponent(new Visibility());
+	tile->addComponent(new ShaderAsset("floor.jpg", PartitionConfig("SimpleShaders.png", 2, 2), FloorShader::shade(ad)));
+	tile->addComponent(new Transform(Vector2D(1, 1), Vector2D::ZERO, Rotation()));
+	MeshScene* scene = dynamic_cast<MeshScene*>(data.scene);
+	scene->addGameObject(tile, data.position, 0);
+	return tile;
 }
+
+Animator* getTypicalAnimator() {
+	vector<Vector2D> goDown = { Vector2D(1, 0), Vector2D(2, 0), Vector2D(3, 0), Vector2D(0, 0) };
+	vector<Vector2D> goLeft = { Vector2D(1, 1), Vector2D(2, 1), Vector2D(3, 1), Vector2D(0, 1) };
+	vector<Vector2D> goRight = { Vector2D(1, 2), Vector2D(2, 2), Vector2D(3, 2), Vector2D(0, 2) };
+	vector<Vector2D> goUp = { Vector2D(1, 3), Vector2D(2, 3), Vector2D(3, 3), Vector2D(0, 3) };
+	map<string, vector<Vector2D>> anims = { {"goDown", goDown }, {"goLeft", goLeft }, {"goRight", goRight }, {"goUp", goUp }, };
+	return new Animator(anims);
+}
+
+GameObject* createPlayer(CreationData data) {
+	GameObject* player = new GameObject();
+	Camera* cam = static_cast<Camera*>(data.scene->getCamera());
+	player->addComponent(new Transform(Vector2D(0.60, 0.75), Vector2D::ZERO, Rotation(0), 1));
+	player->addComponent(new ImageRenderer());
+	player->addComponent(new CameraVisibility());
+	player->addComponent(new Collider());
+	player->addComponent(new Sprite("player.png", 4, 4));
+	player->addComponent(new MeshController(3));
+	player->addComponent(new PlayerMovement());
+	player->addComponent(getTypicalAnimator());
+	player->addGameObject(cam);
+	MeshScene* scene = dynamic_cast<MeshScene*>(data.scene);
+	scene->addGameObject(player, data.position, 1);
+	return player;
+}
+
 
 int main() {
 	Engine* en = Engine::getInstance();
 	GameState* gs = GameState::get();
-
 	en->onInit();
+
+	DrawDecoder::get()->registerTile({ 0, 162, 232 }, 1);
+	DrawDecoder::get()->registerTile({ 255, 242, 0 }, 2);
+	
+	ObjectFactory::get()->regist(1, Layer::TILES, createWall, ObjectType::WALL);
+	ObjectFactory::get()->regist(2, Layer::TILES, createFloor, ObjectType::FLOOR);
+
 
 	// Creating Scenes
 	MeshScene* mainScene = new MeshScene("Main", 16);
 	Camera* cam = mainScene->getCamera();
+	mainScene->addScript(new ExampleScript());
 	gs->addScene(mainScene);
-
-	PlaneScene* testScene = new PlaneScene("Main2");
-	Camera* cam2 = testScene->getCamera();
-	gs->addScene(testScene);
-
-	Asset* fov = new Asset("fow3.png");
-
-	Asset* bar = new Asset("bar.png");
-
-	Asset* light = new Asset("light.png");
 
 	PartitionConfig wallShader = PartitionConfig("SimpleShaders.png", 2, 2);
 	vector<ALLEGRO_BITMAP*>	shaders = AssetManager::get()->partition(wallShader);
 
-	ALLEGRO_BITMAP* floor = AssetManager::get()->occupy("floor.jpg");
-	ALLEGRO_BITMAP* wall = AssetManager::get()->occupy("wall.png");
+	MeshLoader* loader = new MeshLoader();
+	loader->load(mainScene, "tile2.png");
 
-	fd = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::DOWN) });
-	fu = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::UP) });
-	fr = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::RIGHT) });
-	fl = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::LEFT) });
-	fru = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::RIGHT), ShaderPart(1, SideShaderRotation::UP) });
-	frd = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::RIGHT), ShaderPart(1, SideShaderRotation::DOWN) });
-	fld = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::LEFT), ShaderPart(1, SideShaderRotation::DOWN) });
-	flu = new ShaderAsset("floor.jpg", wallShader, { ShaderPart(1, SideShaderRotation::LEFT), ShaderPart(1, SideShaderRotation::UP) });
-	fc = new Asset("floor.jpg");
+	Asset* fov = new Asset("fow3.png");
+	Asset* bar = new Asset("bar.png");
+	Asset* light = new Asset("light.png");
 
-	wd = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::UP ) });
-	wu = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::DOWN ), ShaderPart(1, SideShaderRotation::UP) });
-	wr = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::RIGHT), ShaderPart(1, SideShaderRotation::LEFT) });
-	wl = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::LEFT), ShaderPart(1, SideShaderRotation::RIGHT) });
-	wru = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::UP), ShaderPart(0, SideShaderRotation::RIGHT), ShaderPart(3, CornerShaderRotation::LEFTDOWN) });
-	wrd = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::DOWN), ShaderPart(0, SideShaderRotation::RIGHT), ShaderPart(3, CornerShaderRotation::LEFTUP) });
-	wld = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::DOWN), ShaderPart(0, SideShaderRotation::LEFT), ShaderPart(3, CornerShaderRotation::RIGHTUP) });
-	wlu = new ShaderAsset("wall.png", wallShader, { ShaderPart(0, SideShaderRotation::UP), ShaderPart(0, SideShaderRotation::LEFT), ShaderPart(3, CornerShaderRotation::RIGHTDOWN) });
-
-	// Creating Game Objects
-
-	int i = 0;
-
-	for (i = 0; i < 100; i++) {
-		createTunnel(i*6, mainScene, 100);
-	}
-
-	/*for (i = -100; i < 100; i++) {
-		for (j = -100; j < 100; j++) {
-			GameObject* tile = new GameObject();
-			tile->addComponent(new ImageRenderer());
-			tile->addComponent(fc);
-			tile->addComponent(new Transform(Vector2D(1,1), Vector2D::ZERO, Rotation()));
-			mainScene->addGameObject(tile, Vector2D(i, j), 0);
-		}
-	}*/
-
-	GameObject* lightg = new GameObject();
-	lightg->addComponent(light);
-	lightg->addComponent(new Transform(Vector2D(50, 50), Vector2D(0, 0), Rotation(0)));
-	lightg->addComponent(new CameraVisibility());
-	lightg->addComponent(new LightRenderer());
-	mainScene->addLight(lightg);
-
-	GameObject* lightg2 = new GameObject();
-	lightg2->addComponent(light);
-	lightg2->addComponent(new Transform(Vector2D(50, 50), Vector2D(200, 200), Rotation(0)));
-	lightg2->addComponent(new CameraVisibility());
-	lightg2->addComponent(new LightRenderer());
-	mainScene->addLight(lightg2);
-
-	//mainScene->addGameObject(createHud(90, 10, 180, 20, bar));
-	
-	/*GameObject* script = new GameObject();
-	script->addComponent(new ExampleScript());
-	mainScene->addGameObject(script);*/
-
-	GameObject* player = new GameObject();
-	player->addComponent(new Transform(Vector2D(1, 1), Vector2D::ZERO, Rotation(0), 1));
-	player->addComponent(new Renderer());
-	player->addComponent(new CameraVisibility());
-	player->addComponent(new Collider());
-	player->addComponent(new Controller());
-	mainScene->addGameObject(player, Vector2D::ZERO, 1);
-	player->addGameObject(cam);
-
-	mainScene->addScript(new ExampleScript());
+	createPlayer({ mainScene, Vector2D(2,2), nullptr });
+	createTorch({ mainScene, Vector2D(10,4), nullptr });
 
 	// Setting Up scene
 	gs->switchScene("Main");

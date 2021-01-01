@@ -8,10 +8,9 @@ public:
 		ImageRenderer::onUpdate();
 	}
 	void onUpdateAlpha() {
-		Asset* asset = getAsset();
-		ALLEGRO_BITMAP* bmp = asset->getImage();
+		ALLEGRO_BITMAP* bmp = image->getImage();
 		Transform current = calculateLight();
-		renderImage(bmp, current, asset->getImageSize());
+		renderImage(bmp, current, image->getImageSize());
 	}
 	Transform calculateLight() {
 		Vector2D newPosition = (transform->getPosition() - GameState::get()->getViewPosition());

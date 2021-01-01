@@ -27,7 +27,6 @@ public:
 		if (alreadyStarted) {
 			component->onStart();
 		}
-		/*sort(components.begin(), components.end(), [](Component* first, Component* second) { return first->getPriority() < first->getPriority(); });*/
 	}
 
 	void addGameObject(GameObject* gameObject) {
