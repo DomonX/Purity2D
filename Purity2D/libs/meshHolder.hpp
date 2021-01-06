@@ -32,4 +32,11 @@ public:
 	void getGameObject(Component* go) {
 		storeIfIsInstance(&parent, go);
 	}
+
+	JsonProperty serialize() {
+		JsonProperty data = JsonProperty("meshHolder");
+		data.value["x"] = position.getX();
+		data.value["y"] = position.getY();
+		return data;
+	}
 };

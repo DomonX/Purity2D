@@ -39,6 +39,6 @@ protected:
 		return new Camera();
 	}
 	virtual void createFog() {
-		this->fog = new GameObject();
+		this->fog = new GameObject(0);
 	}
 };

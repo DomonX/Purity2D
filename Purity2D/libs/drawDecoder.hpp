@@ -2,35 +2,28 @@
 
 #include <map>
 
-using namespace std;
+#include "objectFactory.hpp"
+#include "color.hpp"
 
-class Color {
-public:
-	int r;
-	int g;
-	int b;
-	Color(int r, int g, int b) {
-		this->r = r;
-		this->g = g;
-		this->b = b;
-	}
-	int evaluate() {
-		return r * 256 * 256 + g * 256 + b;
-	}
-};
+using namespace std;
 
 class DrawDecoder {
 private:
 	static DrawDecoder* instance;
-	map<int, int> registry;
+	map<Layer, map<int, int>> registry;
 	DrawDecoder() {};
 public:
 	static DrawDecoder* get();
-	void registerTile(Color color, int code) {
-		registry[color.evaluate()] = code;
+	void regist(int code, Layer layer, Color color) {
+		registry[layer][color.evaluate()] = code;
 	}
 
-	int getTile(Color color) {
-		return registry[color.evaluate()];
+	void regist(int code, Color color, Layer layer, CreationFunction func, ObjectType type) {
+		registry[layer][color.evaluate()] = code;
+		ObjectFactory::get()->regist(code, layer, func, type);
+	}
+
+	int getTile(Color color, Layer layer) {
+		return registry[layer][color.evaluate()];
 	}
 };

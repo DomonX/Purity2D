@@ -1,7 +1,9 @@
 #pragma once
 
 #include <vector>
+
 #include "sagaElement.h"
+#include "jsonProperty.hpp"
 
 class Component : public SagaElement {
 public:
@@ -10,6 +12,7 @@ public:
 	virtual void onGetParentComponent(Component* component) {}
 	virtual void onRemoveParentComponent(Component* component) {}
 	virtual void getGameObject(Component* gameObject) {}
+	virtual JsonProperty serialize() { return JsonProperty(); }
 	virtual Component* clone() { return nullptr; }
 
 protected:

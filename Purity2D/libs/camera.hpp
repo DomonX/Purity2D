@@ -12,7 +12,7 @@ public:
 	/*!
 		\brief Creates Camera with Transform
 	*/
-	Camera() {
+	Camera(): GameObject(0) {
 		cameraPosition = new Transform(Vector2D(1920 / 6, 1080 / 6), Vector2D(0, 0), Rotation(0));
 		addComponent(cameraPosition);
 	}

@@ -13,41 +13,80 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Pliki nagłówkowe\core">
-      <UniqueIdentifier>{d43e91e6-d9a1-4ef1-bbe6-d2c65cea3a3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pliki źródłowe\core">
       <UniqueIdentifier>{2acc4059-36f3-4da9-af0f-5cfb17baec9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki nagłówkowe\core\components">
+    <Filter Include="Pliki nagłówkowe\engine">
+      <UniqueIdentifier>{22905064-e71f-4323-8656-c99c2ae09d00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core">
+      <UniqueIdentifier>{d43e91e6-d9a1-4ef1-bbe6-d2c65cea3a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\components">
       <UniqueIdentifier>{562864f4-7243-483b-bd03-02c3a09da435}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki nagłówkowe\core\core">
-      <UniqueIdentifier>{73f4f109-c859-4909-9f7b-d6e4c977a5a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki nagłówkowe\core\engine">
-      <UniqueIdentifier>{649b2cd7-3412-48b2-b568-19a09a950867}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki nagłówkowe\core\state">
-      <UniqueIdentifier>{b1314011-d051-4845-bb19-284a20642f4b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki nagłówkowe\core\abstract">
-      <UniqueIdentifier>{2c3c132b-884d-4275-b989-b27d1d158d62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki nagłówkowe\mesh">
-      <UniqueIdentifier>{0d628605-f34f-4512-98b0-1d76471da417}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki nagłówkowe\plane">
-      <UniqueIdentifier>{a189e776-5cc4-4f59-850c-1a24eee85ca2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki nagłówkowe\core\components\renderer">
+    <Filter Include="Pliki nagłówkowe\engine\core\components\renderer">
       <UniqueIdentifier>{67e105e7-2910-4b2b-8b3d-83c88620db84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki nagłówkowe\core\components\visibility">
+    <Filter Include="Pliki nagłówkowe\engine\core\components\visibility">
       <UniqueIdentifier>{9958e996-1b39-4c1c-8bb7-dc1a1f166c94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki nagłówkowe\draw">
-      <UniqueIdentifier>{cebe83ce-f7b1-4c72-8d13-dbc0683880ee}</UniqueIdentifier>
+    <Filter Include="Pliki nagłówkowe\engine\core\engine">
+      <UniqueIdentifier>{649b2cd7-3412-48b2-b568-19a09a950867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\state">
+      <UniqueIdentifier>{b1314011-d051-4845-bb19-284a20642f4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\abstract">
+      <UniqueIdentifier>{2c3c132b-884d-4275-b989-b27d1d158d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\model">
+      <UniqueIdentifier>{42545a93-a709-49a1-9713-ab6efcf49642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\mesh">
+      <UniqueIdentifier>{0d628605-f34f-4512-98b0-1d76471da417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\plane">
+      <UniqueIdentifier>{a189e776-5cc4-4f59-850c-1a24eee85ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\app">
+      <UniqueIdentifier>{9eb12b76-067a-4fd7-80cd-56664c4020dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\components\asset">
+      <UniqueIdentifier>{ba7957c9-998f-4fee-a726-8faf094d6256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\components\base">
+      <UniqueIdentifier>{365f5af7-c1ba-4bb4-bac0-c8dd87f62373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\base">
+      <UniqueIdentifier>{73f4f109-c859-4909-9f7b-d6e4c977a5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\plane\state">
+      <UniqueIdentifier>{85526522-4304-4f84-b374-51a92d3c0525}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\mesh\state">
+      <UniqueIdentifier>{784534fb-b52a-46f8-b8cf-381d60f8cd82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\mesh\components">
+      <UniqueIdentifier>{5eba33b9-30a0-4954-afdc-2ddf7d5acf2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\mesh\model">
+      <UniqueIdentifier>{e47060cd-887b-4578-afb3-ae0edb0aee3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\plane\componenets">
+      <UniqueIdentifier>{2ea20adb-be73-4c01-9e64-3ed937d0701b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\enum">
+      <UniqueIdentifier>{86029d46-763b-4d38-9d17-5e2cc8568143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\creator">
+      <UniqueIdentifier>{7b706059-f341-463a-bd0c-817f71b6c35d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\creator\abstract">
+      <UniqueIdentifier>{99d8198e-7601-45db-9ea0-9a2c1f6d5f85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\core\services">
+      <UniqueIdentifier>{dcfdc1a9-30b4-4424-a89d-14304f118b7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -92,131 +131,161 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libs\exampleScript.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="libs\line.h">
-      <Filter>Pliki nagłówkowe\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\asset.hpp">
-      <Filter>Pliki nagłówkowe\core\components</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\collider.hpp">
-      <Filter>Pliki nagłówkowe\core\components</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\base</Filter>
     </ClInclude>
     <ClInclude Include="libs\component.hpp">
-      <Filter>Pliki nagłówkowe\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\controller.hpp">
-      <Filter>Pliki nagłówkowe\core\components</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\base</Filter>
     </ClInclude>
     <ClInclude Include="libs\engine.hpp">
-      <Filter>Pliki nagłówkowe\core\engine</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\engine</Filter>
     </ClInclude>
     <ClInclude Include="libs\display.hpp">
-      <Filter>Pliki nagłówkowe\core\engine</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\engine</Filter>
     </ClInclude>
     <ClInclude Include="libs\vector2d.hpp">
-      <Filter>Pliki nagłówkowe\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\transform.hpp">
-      <Filter>Pliki nagłówkowe\core\components</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\base</Filter>
     </ClInclude>
     <ClInclude Include="libs\time.hpp">
-      <Filter>Pliki nagłówkowe\core\engine</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\engine</Filter>
     </ClInclude>
     <ClInclude Include="libs\rotation.hpp">
-      <Filter>Pliki nagłówkowe\core\core</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\base</Filter>
     </ClInclude>
     <ClInclude Include="libs\gameState.hpp">
-      <Filter>Pliki nagłówkowe\core\state</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\state</Filter>
     </ClInclude>
     <ClInclude Include="libs\gameObject.hpp">
-      <Filter>Pliki nagłówkowe\core\state</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\state</Filter>
     </ClInclude>
     <ClInclude Include="libs\camera.hpp">
-      <Filter>Pliki nagłówkowe\core\state</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\state</Filter>
     </ClInclude>
     <ClInclude Include="libs\assetManager.hpp">
-      <Filter>Pliki nagłówkowe\core\engine</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\engine</Filter>
     </ClInclude>
     <ClInclude Include="libs\scene.hpp">
-      <Filter>Pliki nagłówkowe\core\state</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\state</Filter>
     </ClInclude>
     <ClInclude Include="libs\keyboard.hpp">
-      <Filter>Pliki nagłówkowe\core\engine</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\engine</Filter>
     </ClInclude>
     <ClInclude Include="libs\keyboardObserver.hpp">
-      <Filter>Pliki nagłówkowe\core\abstract</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\meshScene.hpp">
-      <Filter>Pliki nagłówkowe\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\planeScene.h">
-      <Filter>Pliki nagłówkowe\plane</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\abstract</Filter>
     </ClInclude>
     <ClInclude Include="libs\sagaElement.h">
-      <Filter>Pliki nagłówkowe\core\abstract</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\mesh.hpp">
-      <Filter>Pliki nagłówkowe\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\shaderAsset.h">
-      <Filter>Pliki nagłówkowe\core\components</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\abstract</Filter>
     </ClInclude>
     <ClInclude Include="libs\fogRenderer.hpp">
-      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components\renderer</Filter>
     </ClInclude>
     <ClInclude Include="libs\hudRenderer.hpp">
-      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components\renderer</Filter>
     </ClInclude>
     <ClInclude Include="libs\lightRenderer.hpp">
-      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components\renderer</Filter>
     </ClInclude>
     <ClInclude Include="libs\imageRenderer.hpp">
-      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components\renderer</Filter>
     </ClInclude>
     <ClInclude Include="libs\renderer.hpp">
-      <Filter>Pliki nagłówkowe\core\components\renderer</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components\renderer</Filter>
     </ClInclude>
     <ClInclude Include="libs\cameraVisiblity.hpp">
-      <Filter>Pliki nagłówkowe\core\components\visibility</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components\visibility</Filter>
     </ClInclude>
     <ClInclude Include="libs\visibility.hpp">
-      <Filter>Pliki nagłówkowe\core\components\visibility</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components\visibility</Filter>
     </ClInclude>
     <ClInclude Include="libs\meshLoader.hpp">
-      <Filter>Pliki nagłówkowe\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\objectFactory.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\drawDecoder.hpp">
-      <Filter>Pliki nagłówkowe\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\wallShader.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\floorShader.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\meshHolder.hpp">
-      <Filter>Pliki nagłówkowe\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\meshController.hpp">
-      <Filter>Pliki nagłówkowe\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\PlayerMovement.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\meshCollider.hpp">
-      <Filter>Pliki nagłówkowe\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\sprite.hpp">
-      <Filter>Pliki nagłówkowe\core\components</Filter>
+      <Filter>Pliki nagłówkowe\engine\mesh</Filter>
     </ClInclude>
     <ClInclude Include="libs\animator.hpp">
-      <Filter>Pliki nagłówkowe\core\components</Filter>
+      <Filter>Pliki nagłówkowe\engine\core\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\controllerObserver.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\jsonProperty.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\drawDecoder.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\exampleScript.hpp">
+      <Filter>Pliki nagłówkowe\app</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\floorShader.hpp">
+      <Filter>Pliki nagłówkowe\app</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\PlayerMovement.hpp">
+      <Filter>Pliki nagłówkowe\app</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\wallShader.hpp">
+      <Filter>Pliki nagłówkowe\app</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\asset.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\components\asset</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\shaderAsset.h">
+      <Filter>Pliki nagłówkowe\engine\core\components\asset</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\sprite.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\components\asset</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\transform.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\components\base</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\planeScene.h">
+      <Filter>Pliki nagłówkowe\engine\plane\state</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshScene.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh\state</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshHolder.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshController.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshCollider.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshAi.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh\components</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\mesh.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh\state</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\color.hpp">
+      <Filter>Pliki nagłówkowe\engine\mesh\model</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\controller.hpp">
+      <Filter>Pliki nagłówkowe\engine\plane\componenets</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\collider.hpp">
+      <Filter>Pliki nagłówkowe\engine\plane\componenets</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\shaderBuilder.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\shaderPart.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\meshAdjacent.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\model</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\objectFactory.hpp">
+      <Filter>Pliki nagłówkowe\engine\creator</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\objectCreator.hpp">
+      <Filter>Pliki nagłówkowe\engine\creator\abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\mapCompiler.hpp">
+      <Filter>Pliki nagłówkowe\engine\creator</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\filesystemHandler.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\services</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

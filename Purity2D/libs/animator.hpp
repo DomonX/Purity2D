@@ -2,11 +2,14 @@
 
 #include "component.hpp"
 #include "sprite.hpp"
+#include "meshController.hpp"
+#include "controllerObserver.hpp"
 
 class Animator : public Component {
 private:
 	map<string, vector<Vector2D>> animations;
 	Sprite* sprite;
+	MeshController* ctrl;
 	vector<Vector2D> currentAnimation;
 	int currentFrame;
 	int animationFrames;
@@ -59,7 +62,6 @@ public:
 private:
 	void nextFrame() {
 		currentFrame++;
-		cout << "Switched to frame" << currentFrame << endl;
 		currentTime -= frameDuration;
 		if (currentFrame <= animationFrames) {
 			setFrame(currentAnimation.at(currentFrame));

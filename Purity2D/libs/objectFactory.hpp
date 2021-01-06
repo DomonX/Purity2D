@@ -8,14 +8,22 @@
 using namespace std;
 
 
-enum class ObjectType {UNKNOWN, WALL, FLOOR};
+enum class ObjectType {UNKNOWN, WALL, FLOOR, PLAYER};
 enum class Layer {TILES, OBJECTS, ENTITIES, SCRIPTS};
 
 class CreationData {
 public:
-	Scene* scene = nullptr;
+	int id;
+	Scene* scene;
 	Vector2D position;
 	void* extra;
+
+	CreationData(int id, Scene* scene, Vector2D position, void* extra) {
+		this->id = id;
+		this->scene = scene;
+		this->position = position;
+		this->extra = extra;
+	}
 };
 
 typedef GameObject* (*CreationFunction)(CreationData);

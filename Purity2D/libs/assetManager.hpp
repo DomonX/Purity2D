@@ -5,22 +5,14 @@
 #include <algorithm>
 #include <allegro5/allegro.h>
 #include <sstream>
+
 #include "rotation.hpp"
+#include "shaderPart.hpp"
 
 using namespace std;
 
 enum SideShaderRotation { RIGHT, DOWN, LEFT, UP };
 enum CornerShaderRotation { RIGHTUP, RIGHTDOWN, LEFTDOWN, LEFTUP };
-
-struct ShaderPart {
-	short shaderNumber;
-	short shaderRotation;
-
-	ShaderPart(short shaderNumber, short shaderRotation) {
-		this->shaderNumber = shaderNumber;
-		this->shaderRotation = shaderRotation;
-	}
-};
 
 struct AssetItem {
 	int peers;
@@ -32,9 +24,7 @@ struct PartitionConfig {
 	short h;
 	string path;
 
-	PartitionConfig() {
-
-	}
+	PartitionConfig() {}
 
 	PartitionConfig(string path, short w, short h) {
 		this->w = w;

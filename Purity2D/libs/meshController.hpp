@@ -7,8 +7,7 @@
 #include "time.hpp"
 #include "transform.hpp"
 #include "meshCollider.hpp"
-
-enum class Direction { NONE, UP, DOWN, LEFT, RIGHT };
+#include "controllerObserver.hpp"
 
 class MeshController: public Component, public KeyboardObserver {
 private:
@@ -19,8 +18,8 @@ private:
 	float distance = -1;
 	float currentDistance = 0;
 	float movementSpeed;
+	vector<ControllerObserver*> observers;
 public:
-
 	MeshController(float movementSpeed) : Component(), KeyboardObserver() {
 		this->movementSpeed = movementSpeed;
 	}
@@ -52,6 +51,35 @@ public:
 
 	void move(Direction direction) {
 		currentKey = direction;
+	}
+
+	bool canMove(Vector2D pos, Vector2D dest) {
+		GameObject* curr = mesh->getMesh()->objects[(int)Layer::TILES][pos];
+		if (checkCollisionForObjectOut(curr, dest)) {
+			informCollide(curr);
+			return false;
+		}
+		vector<GameObject*> destObjects = mesh->getMesh()->getObjectsInPosition(dest);
+		for (GameObject* go : destObjects) {
+			if (checkCollisionForObjectIn(go, pos)) {
+				informCollide(go);
+				return false;
+			}
+		}
+		return true;
+	}
+
+	void subscribe(ControllerObserver* observer) {
+		observers.push_back(observer);
+	}
+
+	void unsubscribe(ControllerObserver* observer) {
+		for (vector<ControllerObserver*>::iterator i = observers.begin(); i != observers.end(); i++) {
+			if (*i == observer) {
+				observers.erase(i);
+				return;
+			}
+		}
 	}
 
 private:
@@ -98,17 +126,10 @@ private:
 		currentMove = currentKey;
 		Vector2D currentPosition = mesh->getPosition();
 		Vector2D destinationPosition = currentPosition + getFinishMoveVector();
-		bool hasCollision;
-		GameObject* curr = mesh->getMesh()->objects[0][currentPosition];
-		if (checkCollisionForObjectOut(curr, destinationPosition)) {
+		if (!canMove(currentPosition, destinationPosition)) {
 			return false;
 		}
-		vector<GameObject*> destObjects = mesh->getMesh()->getObjectsInPosition(destinationPosition);
-		for (GameObject* go : destObjects) {
-			if (checkCollisionForObjectIn(go, currentPosition)) {
-				return false;
-			}
-		}
+		informStart(currentMove);
 		distance = mesh->getMesh()->getSize();
 		return true;
 	}
@@ -129,6 +150,9 @@ private:
 		currentKey = Direction::NONE;
 		mesh->move(mesh->getPosition() + getFinishMoveVector());
 		(*tr) = Transform(tr->getScale(), mesh->getMesh()->calculatePosition(mesh->getPosition()), 0);
+		for (ControllerObserver* obs : observers) {
+			obs->onMoveEnd();
+		}
 	}
 
 	bool checkCollisionForObjectOut(GameObject* go, Vector2D pos) {
@@ -145,6 +169,24 @@ private:
 		}
 		MeshCollider* currentCollider = go->getComponent<MeshCollider>();
 		return currentCollider && currentCollider->collidesIn(pos);
+	}
+
+	void informEnd() {
+		for (ControllerObserver* obs : observers) {
+			obs->onMoveEnd();
+		}
+	}
+
+	void informCollide(GameObject* go) {
+		for (ControllerObserver* obs : observers) {
+			obs->onCollide(go);
+		}
+	}
+
+	void informStart(Direction dir) {
+		for (ControllerObserver* obs : observers) {
+			obs->onMoveStart(dir);
+		}
 	}
 
 };

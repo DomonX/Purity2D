@@ -1,0 +1,24 @@
+{
+	"mapName": "exampleMap",
+	"scenes": [
+		{
+			"name": "mainScene",
+			"tiles": [
+				{ id: "1", data: {} },
+				{ id: "1", data: {} },
+				{ id: "1", data: {} },
+				{ id: "1", data: {} },
+				{ id: "1", data: {} },
+			],
+			"objects": [
+			
+			],
+			"entities": [
+			
+			],
+			"scripts": [
+			
+			]
+		}
+	]
+}

@@ -8,6 +8,7 @@ private:
 	Mesh* mesh;	
 	vector<Component*> scripts;
 	vector<GameObject*> lights;
+	GameObject* player;
 
 public:
 	MeshScene(string name, int tileSize): Scene(name) {
@@ -101,5 +102,13 @@ public:
 
 	Vector2D calculatePosition(Vector2D position) {
 		return this->mesh->calculatePosition(position);
+	}
+
+	GameObject** getPlayer() {
+		return &player;
+	}
+
+	void setPlayer(GameObject* player) {
+		this->player = player;
 	}
 };

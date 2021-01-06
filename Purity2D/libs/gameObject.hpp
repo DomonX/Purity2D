@@ -6,11 +6,13 @@
 using namespace std;
 class GameObject : public Component {
 private:
+	int id;
 	vector<Component*> components;
 	vector<GameObject*> children;
 	bool alreadyStarted;
 public:
-	GameObject() : Component() {
+	GameObject(int id) : Component() {
+		this->id = id;
 		alreadyStarted = false;
 	}
 
@@ -85,7 +87,7 @@ public:
 	}
 
 	GameObject* clone() {
-		GameObject* o = new GameObject();
+		GameObject* o = new GameObject(id);
 		for (Component* component : components) {
 			o->addComponent(component->clone());
 		}
@@ -113,6 +115,26 @@ public:
 			}
 		}
 		return temp;
+	}
+
+	JsonProperty serialize() {
+		JsonProperty data = JsonProperty();
+		data.created = true;
+		data.value = Json::object();
+		data.value["id"] = id;
+
+		vector<JsonProperty> props;
+		for (Component* component : components) {
+			props.push_back(component->serialize());
+		}
+
+		remove_if(props.begin(), props.end(), [](JsonProperty p) { return !p.created; });
+
+		for (JsonProperty p : props) {
+			data.value["data"][p.name] = p.value;
+		}
+
+		return data;
 	}
 
 };

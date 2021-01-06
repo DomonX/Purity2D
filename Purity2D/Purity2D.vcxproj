@@ -100,6 +100,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +137,7 @@
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +159,7 @@
       <ConformanceMode>true</ConformanceMode>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,28 +194,36 @@
     <ClInclude Include="libs\camera.hpp" />
     <ClInclude Include="libs\cameraVisiblity.hpp" />
     <ClInclude Include="libs\collider.hpp" />
+    <ClInclude Include="libs\color.hpp" />
     <ClInclude Include="libs\component.hpp" />
     <ClInclude Include="libs\controller.hpp" />
+    <ClInclude Include="libs\controllerObserver.hpp" />
     <ClInclude Include="libs\display.hpp" />
     <ClInclude Include="libs\drawDecoder.hpp" />
     <ClInclude Include="libs\engine.hpp" />
     <ClInclude Include="libs\exampleScript.hpp" />
+    <ClInclude Include="libs\filesystemHandler.hpp" />
     <ClInclude Include="libs\floorShader.hpp" />
     <ClInclude Include="libs\fogRenderer.hpp" />
     <ClInclude Include="libs\gameObject.hpp" />
     <ClInclude Include="libs\gameState.hpp" />
     <ClInclude Include="libs\hudRenderer.hpp" />
     <ClInclude Include="libs\imageRenderer.hpp" />
+    <ClInclude Include="libs\jsonProperty.hpp" />
     <ClInclude Include="libs\keyboard.hpp" />
     <ClInclude Include="libs\keyboardObserver.hpp" />
     <ClInclude Include="libs\lightRenderer.hpp" />
     <ClInclude Include="libs\line.h" />
+    <ClInclude Include="libs\mapCompiler.hpp" />
     <ClInclude Include="libs\mesh.hpp" />
+    <ClInclude Include="libs\meshAdjacent.hpp" />
+    <ClInclude Include="libs\meshAi.hpp" />
     <ClInclude Include="libs\meshCollider.hpp" />
     <ClInclude Include="libs\meshController.hpp" />
     <ClInclude Include="libs\meshHolder.hpp" />
     <ClInclude Include="libs\meshLoader.hpp" />
     <ClInclude Include="libs\meshScene.hpp" />
+    <ClInclude Include="libs\objectCreator.hpp" />
     <ClInclude Include="libs\objectFactory.hpp" />
     <ClInclude Include="libs\planeScene.h" />
     <ClInclude Include="libs\PlayerMovement.hpp" />
@@ -220,6 +232,8 @@
     <ClInclude Include="libs\sagaElement.h" />
     <ClInclude Include="libs\scene.hpp" />
     <ClInclude Include="libs\shaderAsset.h" />
+    <ClInclude Include="libs\shaderBuilder.hpp" />
+    <ClInclude Include="libs\shaderPart.hpp" />
     <ClInclude Include="libs\sprite.hpp" />
     <ClInclude Include="libs\time.hpp" />
     <ClInclude Include="libs\transform.hpp" />
@@ -234,6 +248,8 @@
     <Import Project="..\packages\boost.1.72.0.0\build\boost.targets" Condition="Exists('..\packages\boost.1.72.0.0\build\boost.targets')" />
     <Import Project="..\packages\rapidxml.1.13\build\native\rapidxml.targets" Condition="Exists('..\packages\rapidxml.1.13\build\native\rapidxml.targets')" />
     <Import Project="..\packages\rapidjson.1.0.2\build\native\rapidjson.targets" Condition="Exists('..\packages\rapidjson.1.0.2\build\native\rapidjson.targets')" />
+    <Import Project="..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" />
+    <Import Project="..\packages\dirent.1.13.1\build\native\dirent.targets" Condition="Exists('..\packages\dirent.1.13.1\build\native\dirent.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -244,5 +260,7 @@
     <Error Condition="!Exists('..\packages\boost.1.72.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.72.0.0\build\boost.targets'))" />
     <Error Condition="!Exists('..\packages\rapidxml.1.13\build\native\rapidxml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\rapidxml.1.13\build\native\rapidxml.targets'))" />
     <Error Condition="!Exists('..\packages\rapidjson.1.0.2\build\native\rapidjson.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\rapidjson.1.0.2\build\native\rapidjson.targets'))" />
+    <Error Condition="!Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets'))" />
+    <Error Condition="!Exists('..\packages\dirent.1.13.1\build\native\dirent.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\dirent.1.13.1\build\native\dirent.targets'))" />
   </Target>
 </Project>

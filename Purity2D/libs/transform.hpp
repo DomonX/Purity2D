@@ -7,7 +7,6 @@
 
 class Transform : public Component {
 private:
-	int layer;
 	Vector2D scale;
 	Vector2D position;
 	Vector2D cachedPosition;
@@ -19,15 +18,6 @@ public:
 		this->scale = scale;
 		this->position = position;
 		this->rotation = rotation;
-		this->layer = 0;
-		lines = vector<Line>();
-	}
-
-	Transform(Vector2D scale, Vector2D position, Rotation rotation, int layer) {
-		this->scale = scale;
-		this->position = position;
-		this->rotation = rotation;
-		this->layer = layer;
 		lines = vector<Line>();
 	}
 
@@ -101,14 +91,6 @@ public:
 			calculateLines();
 		}
 		return lines;
-	}
-
-	int getLayer() {
-		return layer;
-	}
-
-	Transform setLayer(int layer) {
-		return Transform(getScale(), getPosition(), getRotation(), layer);
 	}
 
 	string toString() {

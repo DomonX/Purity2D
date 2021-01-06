@@ -6,7 +6,6 @@ class ShaderAsset : public Asset {
 protected:
 	PartitionConfig conf;
 	vector<ShaderPart> parts;
-
 public:
 	ShaderAsset(string path, PartitionConfig conf, vector<ShaderPart> parts) {
 		this->path = path;
@@ -14,6 +13,16 @@ public:
 		this->parts = parts;
 		load();
 	}
+
+	JsonProperty serialize() {
+		JsonProperty data = JsonProperty("ShaderAsset");
+		data.value["shaders"] = Json::array();
+		for (ShaderPart part : parts) {
+			data.value["shaders"].push_back(Json::object({ { "index" , part.shaderNumber }, { "rotation", part.shaderRotation } }));
+		}
+		return data;
+	}
+
 protected:
 	ShaderAsset() {
 		asset = nullptr;
