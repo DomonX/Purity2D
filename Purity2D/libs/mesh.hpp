@@ -4,12 +4,12 @@
 #include "gameObject.hpp"
 #include "vector2d.hpp"
 
-class Mesh {
+class Mesh : public SceneElement {
 private:
 	vector<GameObject*> lights;
 	int tileSize;
 public:
-	//map<Vector2D, map<int, GameObject*>> objects;
+	string sceneName;
 	map<int, map<Vector2D, GameObject*>> objects;
 
 	Mesh(int tileSize) {
@@ -17,6 +17,7 @@ public:
 	}
 
 	void add(GameObject* object, Vector2D position, int layer) {
+		object->setScene(sceneName);
 		objects[layer][position] = object;
 	}
 

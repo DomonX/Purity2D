@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include "jsonProperty.hpp"
 #include "gameObject.hpp"
 #include "camera.hpp"
 #include "asset.hpp"
@@ -15,6 +16,7 @@ protected:
 	Camera* camera;
 	GameObject* fog;
 	GameObject* player;
+	bool hasAlpha = false;
 public:
 	Scene(string name) {
 		this->name = name;
@@ -32,6 +34,22 @@ public:
 
 	GameObject** getPlayer() {
 		return &player;
+	}
+
+	void setPlayer(GameObject* player) {
+		this->player = player;
+	}
+
+	virtual Json serialize() {
+		return Json::object();
+	}
+
+	void setAlpha(bool mode) {
+		hasAlpha = mode;
+	}
+
+	bool getAlpha() {
+		return hasAlpha;
 	}
 
 protected:

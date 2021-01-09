@@ -3,9 +3,10 @@
 #include <vector>
 
 #include "sagaElement.h"
+#include "sceneElement.hpp"
 #include "jsonProperty.hpp"
 
-class Component : public SagaElement {
+class Component : public SagaElement, public SceneElement {
 public:
 	virtual void onGetOtherComponent(Component* component) {}
 	virtual void onRemoveOtherComponent(Component component) {}

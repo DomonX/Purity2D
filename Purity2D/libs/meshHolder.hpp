@@ -2,6 +2,7 @@
 
 #include "component.hpp"
 #include "mesh.hpp"
+#include "EDirection.hpp"
 
 class MeshHolder : public Component {
 private:
@@ -34,9 +35,26 @@ public:
 	}
 
 	JsonProperty serialize() {
-		JsonProperty data = JsonProperty("meshHolder");
+		JsonProperty data = JsonProperty("position");
 		data.value["x"] = position.getX();
 		data.value["y"] = position.getY();
 		return data;
+	}
+
+	Direction getNear(Vector2D pos) {
+		Vector2D dif = pos - position;
+		if (dif.getX() == 1) {
+			return Direction::RIGHT;
+		}
+		if (dif.getX() == -1) {
+			return Direction::LEFT;
+		}
+		if (dif.getY() == 1) {
+			return Direction::DOWN;
+		}
+		if (dif.getY() == 1) {
+			return Direction::UP;
+		}
+		return Direction::NONE;
 	}
 };

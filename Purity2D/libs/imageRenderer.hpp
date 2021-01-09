@@ -57,7 +57,7 @@ public:
 	}
 	void onRender() {
 		ALLEGRO_BITMAP* bmp = image->getImage();
-		Transform current = calculateNewTransform();
+		Transform current = TransformScaler().scale(transform);
 		renderImage(bmp, current, image->getImageSize());
 	}
 

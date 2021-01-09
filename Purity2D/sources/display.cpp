@@ -22,6 +22,7 @@ void Display::createScreen() {
 	}
 	display = al_create_display(size.getX(), size.getY());
 	al_set_display_flag(display, currentMode, true);
+	screen = al_get_target_bitmap();
 }
 
 Display::Display() {

@@ -2,18 +2,20 @@
 #include "mesh.hpp"
 #include "scene.hpp"
 #include "meshHolder.hpp"
+#include "fogRenderer.hpp"
+#include "jsonProperty.hpp"
 
 class MeshScene : public Scene {
 private:
 	Mesh* mesh;	
 	vector<Component*> scripts;
 	vector<GameObject*> lights;
-	GameObject* player;
 
 public:
 	MeshScene(string name, int tileSize): Scene(name) {
 		createFog();
 		mesh = new Mesh(tileSize);
+		mesh->sceneName = name;
 	}
 
 	void onStart() {
@@ -50,10 +52,15 @@ public:
 		for (Component* script : scripts) {
 			script->onUpdate();
 		}
-		fog->onUpdate();
+		if (getAlpha()) {
+			fog->onUpdate();
+		}
 	}
 
 	virtual void onUpdateAlpha() {
+		if (!getAlpha()) {
+			return;
+		}
 		for (GameObject* i : lights) {
 			i->onUpdateAlpha();
 		}
@@ -83,6 +90,10 @@ public:
 		mesh->add(object, position, layer);
 	}
 
+	void removeGameObject(GameObject* object, Vector2D position, int layer) {
+		mesh->remove(position, layer);
+	}
+
 	void addLight(GameObject* object) {
 		lights.push_back(object);
 	}
@@ -104,11 +115,27 @@ public:
 		return this->mesh->calculatePosition(position);
 	}
 
-	GameObject** getPlayer() {
-		return &player;
-	}
+	Json serialize() {
+		Json j = Json::object();
+		j["name"] = getName();
+		j["tiles"] = Json::array();
+		for (pair<Vector2D, GameObject*> go : mesh->objects[(int)Layer::TILES]) {
+			JsonProperty p = go.second->serialize();
+			j["tiles"].push_back(p.value);
+		}
 
-	void setPlayer(GameObject* player) {
-		this->player = player;
+		j["objects"] = Json::array();
+		for (pair<Vector2D, GameObject*> go : mesh->objects[(int)Layer::OBJECTS]) {
+			JsonProperty p = go.second->serialize();
+			j["objects"].push_back(p.value);
+		}
+
+		j["entities"] = Json::array();
+		for (pair<Vector2D, GameObject*> go : mesh->objects[(int)Layer::ENTITIES]) {
+			JsonProperty p = go.second->serialize();
+			j["entities"].push_back(p.value);
+		}
+
+		return j;
 	}
 };

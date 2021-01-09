@@ -3,11 +3,11 @@
 #include "camera.hpp"
 #include "time.hpp"
 #include "gameState.hpp"
+#include "display.hpp"
 #include <allegro5/allegro.h>
 class FogRenderer: public ImageRenderer {
 	ALLEGRO_BITMAP* bmp;
 	Vector2D bmpSize;
-	ALLEGRO_BITMAP* screen;
 public:
 
 	FogRenderer() : ImageRenderer() {
@@ -23,10 +23,12 @@ public:
 	void onStart() {
 		bmpSize = this->transform->getScale();
 		bmp = al_create_bitmap(bmpSize.getX(), bmpSize.getY());
-		screen = al_get_target_bitmap();
 	}
 
 	void onUpdate() {
+		if (!bmp) {
+			return;
+		}
 		al_set_target_bitmap(bmp);
 		al_clear_to_color(al_map_rgba(0, 0, 0, 255));
 		al_set_blender(ALLEGRO_DEST_MINUS_SRC, ALLEGRO_ONE, ALLEGRO_ONE);
@@ -41,7 +43,7 @@ public:
 
 	void onUpdateAlpha() {
 		Transform current = calculateNewTransform();
-		al_set_target_bitmap(screen);
+		al_set_target_bitmap(Display::get()->getScreen());
 		al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_INVERSE_ALPHA);
 		renderImage(bmp, current, bmpSize);
 	}

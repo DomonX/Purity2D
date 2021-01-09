@@ -10,12 +10,20 @@ using namespace std;
 class Asset : public Component {
 protected:
 	string path;
+	string basePath;
 	ALLEGRO_BITMAP* asset;
 	Vector2D assetSize;
 public:
 
 	Asset(string path) {
 		this->path = path;
+		this->basePath = "assets/";
+		load();
+	}
+
+	Asset(string path, string basePath) {
+		this->path = path;
+		this->basePath = basePath;
 		load();
 	}
 
@@ -42,7 +50,7 @@ protected:
 	}
 
 	virtual void load() {
-		asset = AssetManager::get()->occupy(path);
+		asset = AssetManager::get()->occupy(path, basePath);
 		assetSize = Vector2D(al_get_bitmap_width(asset), al_get_bitmap_height(asset));
 	}
 };

@@ -45,11 +45,10 @@ private:
 	map<string, AssetItem*> assets;
 	map<string, PartitionAssetItem*> partitionAssets;
 	map<string, AssetItem*> shaderAssets;
-	const string basePath = "assets/";
 public:
 	static AssetManager* get();
 
-	ALLEGRO_BITMAP* occupy(string path) {
+	ALLEGRO_BITMAP* occupy(string path, string basePath = "assets/") {
 		AssetItem* i = assets[path];
 		if (i == nullptr) {
 			i = new AssetItem();
@@ -76,7 +75,7 @@ public:
 		}
 	}
 
-	vector<ALLEGRO_BITMAP*> partition(PartitionConfig conf) {
+	vector<ALLEGRO_BITMAP*> partition(PartitionConfig conf, string basePath = "assets/") {
 		string key = getPartitionKey(conf);
 		PartitionAssetItem* item = partitionAssets[key];
 		if (item) {

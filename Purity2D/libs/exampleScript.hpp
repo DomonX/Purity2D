@@ -4,6 +4,8 @@
 #include "keyboard.hpp"
 #include "gameState.hpp"
 #include "display.hpp"
+#include "saveCreator.hpp"
+
 class ExampleScript: public Component, public KeyboardObserver {
 
 	void onStart() {
@@ -18,6 +20,7 @@ class ExampleScript: public Component, public KeyboardObserver {
 		Keyboard::get()->subscribe(ALLEGRO_KEY_9, this);
 		Keyboard::get()->subscribe(ALLEGRO_KEY_O, this);
 		Keyboard::get()->subscribe(ALLEGRO_KEY_P, this);
+		Keyboard::get()->subscribe(ALLEGRO_KEY_M, this);
 	}
 
 	void onClick(int keycode) {
@@ -54,6 +57,9 @@ class ExampleScript: public Component, public KeyboardObserver {
 		if (keycode == ALLEGRO_KEY_P) {
 			Display::get()->presentRendering(false);
 		}
+		if (keycode == ALLEGRO_KEY_M) {
+			SaveCreator().save("save1");
+		}
 	}
 
 	void onEnd() {
@@ -68,5 +74,6 @@ class ExampleScript: public Component, public KeyboardObserver {
 		Keyboard::get()->unsubscribe(ALLEGRO_KEY_9, this);
 		Keyboard::get()->unsubscribe(ALLEGRO_KEY_O, this);
 		Keyboard::get()->unsubscribe(ALLEGRO_KEY_P, this);
+		Keyboard::get()->unsubscribe(ALLEGRO_KEY_M, this);
 	}
 };

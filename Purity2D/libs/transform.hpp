@@ -4,6 +4,7 @@
 #include "component.hpp"
 #include "rotation.hpp"
 #include "line.h"
+//#include "gameState.hpp"
 
 class Transform : public Component {
 private:
@@ -103,6 +104,26 @@ public:
 
 	void onStart() {
 		cachedPosition = position + (parentTransform != nullptr ? parentTransform->getPosition() : Vector2D::ZERO);
+	}
+
+	bool isPointInside(Vector2D point) {
+		vector<Line> lines = getLines();
+		for (Line line : lines) {
+			if (line.intersect(Line(Vector2D::ZERO, point))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool isPointInsideQuick(Vector2D point) {
+		Vector2D first = getPosition() - getScale() / 2;
+		Vector2D second = getPosition() + getScale() / 2;
+		cout << point.toString() << " " << first.toString() << " " << second.toString() << endl;
+		return first.getX() < point.getX() &&
+			first.getY() < point.getY() &&
+			second.getX() > point.getX() &&
+			second.getY() > point.getY();
 	}
 
 private:

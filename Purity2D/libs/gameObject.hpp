@@ -16,8 +16,16 @@ public:
 		alreadyStarted = false;
 	}
 
+	void setScene(string name) {
+		Component::setScene(name);
+		for (Component* i : components) {
+			i->setScene(name);
+		}
+	}
+
 	void addComponent(Component* component) {
 		component->getGameObject(this);
+		component->setScene(getScene());
 		for (Component* i : components) {
 			component->onGetOtherComponent(i);
 			i->onGetOtherComponent(component);
@@ -32,6 +40,7 @@ public:
 	}
 
 	void addGameObject(GameObject* gameObject) {
+		gameObject->setScene(getScene());
 		for (Component* i : components) {
 			gameObject->onGetParentComponent(i);
 		}

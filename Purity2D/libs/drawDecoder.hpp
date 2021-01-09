@@ -18,9 +18,9 @@ public:
 		registry[layer][color.evaluate()] = code;
 	}
 
-	void regist(int code, Color color, Layer layer, CreationFunction func, ObjectType type) {
-		registry[layer][color.evaluate()] = code;
-		ObjectFactory::get()->regist(code, layer, func, type);
+	void regist(int code, Color color, ObjectCreator* c) {
+		registry[c->getLayer()][color.evaluate()] = code;
+		ObjectFactory::get()->regist(code, c);
 	}
 
 	int getTile(Color color, Layer layer) {

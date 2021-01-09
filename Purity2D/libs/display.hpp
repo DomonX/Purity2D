@@ -8,6 +8,7 @@
 class Display {
 private:
 	ALLEGRO_DISPLAY* display = NULL;
+	ALLEGRO_BITMAP* screen = nullptr;
 	static Display* instance;
 	vector<Vector2D> screens = vector<Vector2D>();
 	Vector2D size;
@@ -50,4 +51,12 @@ public:
 	}
 
 	void presentRendering(bool mode);
+
+	ALLEGRO_DISPLAY* getDisplay() {
+		return display;
+	}
+
+	ALLEGRO_BITMAP* getScreen() {
+		return screen;
+	}
 };

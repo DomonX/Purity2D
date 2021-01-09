@@ -3,6 +3,9 @@
 #include "gameState.hpp"
 #include "keyboard.hpp"
 #include "time.hpp"
+#include "mouse.hpp"
+
+using namespace std;
 
 class Engine {
 private:
@@ -11,6 +14,8 @@ private:
 	GameState* gameState;
 	Time* time;
 	Keyboard* keyboard;
+	Mouse* mouse;
+	ALLEGRO_EVENT_QUEUE* eventQueue;
     Engine();
 public:
 	/*!
@@ -24,4 +29,6 @@ public:
 	void onInit();
 	/*!	\brief Lifecycle hook called when engine stops */
 	void onStop();
+
+	void waitForEvent();
 };

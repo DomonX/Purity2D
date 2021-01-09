@@ -88,6 +88,12 @@
     <Filter Include="Pliki nagłówkowe\engine\core\services">
       <UniqueIdentifier>{dcfdc1a9-30b4-4424-a89d-14304f118b7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\app\elements">
+      <UniqueIdentifier>{b10556f3-0570-46c9-bc94-52d4090803bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\engine\extends">
+      <UniqueIdentifier>{ec8f2dc5-9bde-4c85-923a-aea8662debcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -114,9 +120,6 @@
     <ClCompile Include="sources\keyboard.cpp">
       <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
-    <ClCompile Include="sources\renderer.cpp">
-      <Filter>Pliki źródłowe\core</Filter>
-    </ClCompile>
     <ClCompile Include="sources\time.cpp">
       <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
@@ -128,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="sources\drawDecoder.cpp">
       <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\mouse.cpp">
+      <Filter>Pliki źródłowe\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -196,9 +202,6 @@
     </ClInclude>
     <ClInclude Include="libs\visibility.hpp">
       <Filter>Pliki nagłówkowe\engine\core\components\visibility</Filter>
-    </ClInclude>
-    <ClInclude Include="libs\meshLoader.hpp">
-      <Filter>Pliki nagłówkowe\engine\mesh</Filter>
     </ClInclude>
     <ClInclude Include="libs\animator.hpp">
       <Filter>Pliki nagłówkowe\engine\core\components</Filter>
@@ -286,6 +289,60 @@
     </ClInclude>
     <ClInclude Include="libs\filesystemHandler.hpp">
       <Filter>Pliki nagłówkowe\engine\core\services</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\wall.hpp">
+      <Filter>Pliki nagłówkowe\app\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\floor.hpp">
+      <Filter>Pliki nagłówkowe\app\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\torch.hpp">
+      <Filter>Pliki nagłówkowe\app\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\player.hpp">
+      <Filter>Pliki nagłówkowe\app\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\enemy.hpp">
+      <Filter>Pliki nagłówkowe\app\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\saveLoader.hpp">
+      <Filter>Pliki nagłówkowe\engine\creator</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\saveCreator.hpp">
+      <Filter>Pliki nagłówkowe\engine\creator</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\mouse.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\button.hpp">
+      <Filter>Pliki nagłówkowe\engine\extends</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\mouseObserver.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\sceneElement.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\transformScaler.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\services</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\entity.hpp">
+      <Filter>Pliki nagłówkowe\app</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\enemyCmp.hpp">
+      <Filter>Pliki nagłówkowe\app</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\playerComp.hpp">
+      <Filter>Pliki nagłówkowe\app</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\EDirection.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\battleService.hpp">
+      <Filter>Pliki nagłówkowe\engine\core\services</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\mouseElement.hpp">
+      <Filter>Pliki nagłówkowe\engine\extends</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,10 +29,15 @@ public:
 		for (GameObject* i : lights) {
 			i->onUpdate();
 		}
-		fog->onUpdate();
+		if (getAlpha()) {
+			fog->onUpdate();
+		}
 	}
 
 	virtual void onUpdateAlpha() {
+		if (!getAlpha()) {
+			return;
+		}
 		for (GameObject* i : lights) {
 			i->onUpdateAlpha();
 		}
@@ -47,6 +52,7 @@ public:
 	}
 
 	void addGameObject(GameObject* object) {
+		object->setScene(name);
 		objects.push_back(object);
 	}
 

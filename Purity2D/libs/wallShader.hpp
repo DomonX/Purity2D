@@ -1,8 +1,8 @@
 #pragma once
 
 #include "shaderAsset.h"
-#include "meshLoader.hpp"
 #include "objectFactory.hpp"
+#include "meshAdjacent.hpp"
 
 class WallShader {
 public:

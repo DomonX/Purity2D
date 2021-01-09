@@ -8,6 +8,7 @@
 #include "transform.hpp"
 #include "meshCollider.hpp"
 #include "controllerObserver.hpp"
+#include "EDirection.hpp"
 
 class MeshController: public Component, public KeyboardObserver {
 private:

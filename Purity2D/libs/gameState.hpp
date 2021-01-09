@@ -7,8 +7,10 @@
 using namespace std;
 class GameState {
 private:
+	string gameName;
 	static GameState* instance;
 	map<string, Scene*> scenes;
+	vector<string> serializableScenes;
 	Scene* currentScene;
 	Camera* currentCamera;
 	Display* display;
@@ -27,9 +29,20 @@ public:
 		currentCamera = currentScene->getCamera();
 	}
 
-	void addScene(Scene* scene) {
+	void addScene(Scene* scene, bool serializable = false) {
 		scenes[scene->getName()] = scene;
 		scene->onStart();
+		if (serializable) {
+			serializableScenes.push_back(scene->getName());
+		}
+	}
+
+	Scene* getScene(string name) {
+		return scenes[name];
+	}
+
+	string getCurrentSceneName() {
+		return currentScene->getName();
 	}
 
 	void removeScene(Scene* scene) {
@@ -72,7 +85,20 @@ public:
 
 	void onUpdate() {
 		currentScene->onUpdate();
-		currentScene->onUpdateAlpha();
+		currentScene->onUpdateAlpha();		
+	}
+
+	Json save() {
+		Json j = Json::object();
+		j["name"] = gameName;
+		for (pair<string, Scene*> scene : scenes) {
+			j["scenes"].push_back(scene.second->serialize());
+		}
+		return j;
+	}
+
+	void setGameName(string name) {
+		gameName = name;
 	}
 
 	static GameState* get();

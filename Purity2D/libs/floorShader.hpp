@@ -2,7 +2,6 @@
 
 
 #include "shaderAsset.h"
-#include "meshLoader.hpp"
 #include "objectFactory.hpp"
 
 class FloorShader {
