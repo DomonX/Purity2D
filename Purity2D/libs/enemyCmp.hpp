@@ -9,12 +9,14 @@ class EnemyComponent : public Entity {
 private:
 	MeshHolder* mesh;
 	Transform* transform;
-	BattleService battlerService;
+	BattleService* battlerService;
 	GameObject* go;
 	MouseElement* mouseElement;
+	bool isAttacking = false;
 public:
 	EnemyComponent(Scene* scene, int health, double attackSpeed, int attackDamage, int armor) : Entity(scene, health, attackSpeed, attackDamage, armor) { 
 		mouseElement = new MouseElement();
+		battlerService = new BattleService();
 	}
 
 	void setScene(string sceneName) {
@@ -22,7 +24,7 @@ public:
 	}
 
 	void onStart() {
-		//mouseElement->onStart();
+		mouseElement->onStart();
 		mouseElement->connectTransform(transform);
 		mouseElement->connectOwner(this);
 		mouseElement->onClick = [](Component* current, ClickType click) {
@@ -40,14 +42,21 @@ public:
 	}
 
 	void onUpdate() {
-		battlerService.onUpdate();
+		if(currentHealth <= 0) {
+			scene->removeGameObject(mesh->getPosition(), (int)Layer::ENTITIES);
+			return;
+		}
+		battlerService->onUpdate();
 		GameObject* player = (*scene->getPlayer());
 		MeshHolder* mesh = player->getComponent<MeshHolder>();
-		if (mesh->getNear(this->mesh->getPosition()) != Direction::NONE) {
+		bool isNear = mesh->getNear(this->mesh->getPosition());
+		if (isNear && !isAttacking) {
+			isAttacking = true;
 			PlayerComponent* p = player->getComponent<PlayerComponent>();
-			battlerService.attack(this, p);
-		} else {
-			battlerService.stopAttacks();
+			battlerService->attack(this, p);
+		} else if(!isNear && isAttacking){
+			isAttacking = false;
+			battlerService->stopAttacks();
 		}
 	}
 
@@ -55,12 +64,16 @@ public:
 		return go;
 	}
 
-	void getGameObject(GameObject* go) {
-		this->go = go;
+	void getGameObject(Component* go) {
+		this->go = dynamic_cast<GameObject*>(go);
 	}
 
 	void onDelete() {
+		GameObject* player = (*scene->getPlayer());
+		PlayerComponent* p = player->getComponent<PlayerComponent>();
+		p->entitySelected(nullptr);
 		mouseElement->onDelete();
 		delete(mouseElement);
+		delete(battlerService);
 	}
 };

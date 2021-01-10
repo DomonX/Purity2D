@@ -5,11 +5,18 @@
 #include "fogRenderer.hpp"
 #include "jsonProperty.hpp"
 
+class RemoveLocation {
+public:
+	Vector2D position;
+	int layer;
+};
+
 class MeshScene : public Scene {
 private:
 	Mesh* mesh;	
 	vector<Component*> scripts;
 	vector<GameObject*> lights;
+	vector<RemoveLocation> elementsToRemove;
 
 public:
 	MeshScene(string name, int tileSize): Scene(name) {
@@ -31,6 +38,7 @@ public:
 	}
 
 	void onUpdate() {
+		elementsToRemove.clear();
 		camera->onUpdate();
 		Vector2D size = getSize();
 		Vector2D pos = getPosition();
@@ -54,6 +62,9 @@ public:
 		}
 		if (getAlpha()) {
 			fog->onUpdate();
+		}
+		for (RemoveLocation l : elementsToRemove) {
+			mesh->remove(l.position, l.layer);
 		}
 	}
 
@@ -90,8 +101,8 @@ public:
 		mesh->add(object, position, layer);
 	}
 
-	void removeGameObject(GameObject* object, Vector2D position, int layer) {
-		mesh->remove(position, layer);
+	void removeGameObject(Vector2D position, int layer) {
+		elementsToRemove.push_back({ position, layer });
 	}
 
 	void addLight(GameObject* object) {

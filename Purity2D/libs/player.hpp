@@ -29,7 +29,7 @@ public:
 		player->addComponent(new Sprite("player.png", 4, 4));
 		player->addComponent(new MeshController(3));
 		player->addComponent(new PlayerMovement());
-		player->addComponent(new PlayerComponent(data.scene, 100, 0.1, 10, 5));
+		player->addComponent(new PlayerComponent(data.scene, 170, 0.7, 12, 19));
 		player->addComponent(getTypicalAnimator());
 		player->addGameObject(cam);
 		MeshScene* scene = dynamic_cast<MeshScene*>(data.scene);

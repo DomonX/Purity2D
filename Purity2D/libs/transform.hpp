@@ -119,7 +119,6 @@ public:
 	bool isPointInsideQuick(Vector2D point) {
 		Vector2D first = getPosition() - getScale() / 2;
 		Vector2D second = getPosition() + getScale() / 2;
-		cout << point.toString() << " " << first.toString() << " " << second.toString() << endl;
 		return first.getX() < point.getX() &&
 			first.getY() < point.getY() &&
 			second.getX() > point.getX() &&

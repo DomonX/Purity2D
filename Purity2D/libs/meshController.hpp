@@ -10,6 +10,8 @@
 #include "controllerObserver.hpp"
 #include "EDirection.hpp"
 
+#include <algorithm>;
+
 class MeshController: public Component, public KeyboardObserver {
 private:
 	MeshHolder* mesh = nullptr;
@@ -75,12 +77,7 @@ public:
 	}
 
 	void unsubscribe(ControllerObserver* observer) {
-		for (vector<ControllerObserver*>::iterator i = observers.begin(); i != observers.end(); i++) {
-			if (*i == observer) {
-				observers.erase(i);
-				return;
-			}
-		}
+		remove_if(observers.begin(), observers.end(), [observer](ControllerObserver* ob) { return ob == observer; });
 	}
 
 private:

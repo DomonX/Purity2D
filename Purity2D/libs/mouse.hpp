@@ -15,6 +15,8 @@ class Mouse {
 private:
 	static Mouse* instance;
 	vector<MouseObserver*> observers;
+	bool lastLeftClicked = false;
+	bool lastRightClicked = false;
 	Mouse();
 public:
 
@@ -24,14 +26,29 @@ public:
 		al_get_mouse_state(&state);
 
 		axes(Vector2D(state.x, state.y));
+
+		bool leftClicked = al_mouse_button_down(&state, 1);
+		bool rightClicked = al_mouse_button_down(&state, 2);
 		
-		if (al_mouse_button_down(&state, 1)) {
+		if (!lastLeftClicked && leftClicked) {
 			click(ClickType::LEFT);
 		}
 
-		if (al_mouse_button_down(&state, 1)) {
+		if (lastLeftClicked && !leftClicked) {
+			unclick(ClickType::LEFT);
+		}
+
+		if (!lastRightClicked && rightClicked) {
 			click(ClickType::RIGHT);
 		}
+
+		if (lastRightClicked && !rightClicked) {
+			unclick(ClickType::RIGHT);
+		}
+
+		lastLeftClicked = leftClicked;
+		lastRightClicked = rightClicked;
+
 	}
 
 	void axes(Vector2D pos) {
@@ -49,7 +66,8 @@ public:
 
 	void click(ClickType click) {
 		string currentScene = GameState::get()->getCurrentSceneName();
-		for (MouseObserver* obs : observers) {
+		vector<MouseObserver*> cur = vector<MouseObserver*>(observers);
+		for (MouseObserver* obs : cur) {
 			SceneElement* sc = dynamic_cast<SceneElement*>(obs);
 			if (!sc) {
 				continue;
@@ -60,7 +78,7 @@ public:
 		}
 	}
 
-	void unclick() {
+	void unclick(ClickType click) {
 		string currentScene = GameState::get()->getCurrentSceneName();
 		for (MouseObserver* obs : observers) {
 			SceneElement* sc = dynamic_cast<SceneElement*>(obs);
@@ -78,7 +96,7 @@ public:
 	}
 
 	void unsubscribe(MouseObserver* obs) {
-		remove_if(observers.begin(), observers.end(), [obs](MouseObserver* o) { return o == obs; });
+		observers.erase(remove_if(observers.begin(), observers.end(), [obs](MouseObserver* o) { return o == obs; }));
 	}
 
 	static Mouse* get();

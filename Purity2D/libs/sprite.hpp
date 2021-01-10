@@ -7,6 +7,7 @@ private:
 	int w;
 	int h;
 	vector<ALLEGRO_BITMAP*> bitmaps;
+	PartitionConfig conf;
 public:
 	Sprite(string path, int w, int h) : Asset() {
 		this->path = path;
@@ -16,10 +17,14 @@ public:
 	}
 
 	virtual void load() {
-		PartitionConfig conf = PartitionConfig(path, w, h);
+		conf = PartitionConfig(path, w, h);
 		bitmaps = AssetManager::get()->partition(conf);
 		asset = bitmaps.at(0);
 		assetSize = Vector2D(al_get_bitmap_width(asset), al_get_bitmap_height(asset));
+	}
+
+	void onDelete() {
+		AssetManager::get()->unpartition(conf);
 	}
 
 	void change(int x, int y) {

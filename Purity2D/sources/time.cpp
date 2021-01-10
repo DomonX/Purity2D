@@ -12,7 +12,7 @@ void Time::setDeltaTime(double time) {
 	frameRate += time;
 	if (frameRate > 0.25) {
 		frameRate -= 0.25;
-		cout << frames / 0.25 << endl;
+		//cout << frames / 0.25 << endl;
 		frames = 0;
 	}
 }

@@ -91,8 +91,12 @@ public:
 
 	void onDelete() {
 		for (Component* i : components) {
-			free(i);
+			i->onDelete();
 		}
+		for (Component* i : components) {
+			delete(i);
+		}
+		components.clear();
 	}
 
 	GameObject* clone() {

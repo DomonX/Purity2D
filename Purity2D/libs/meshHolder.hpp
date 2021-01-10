@@ -41,20 +41,16 @@ public:
 		return data;
 	}
 
-	Direction getNear(Vector2D pos) {
-		Vector2D dif = pos - position;
-		if (dif.getX() == 1) {
-			return Direction::RIGHT;
+	bool getNear(Vector2D pos) {
+		Vector2D dif = (pos - position).absolute();
+		if (dif.getX() > 1) {
+			return false;
 		}
-		if (dif.getX() == -1) {
-			return Direction::LEFT;
+
+		if (dif.getY() > 1) {
+			return false;
 		}
-		if (dif.getY() == 1) {
-			return Direction::DOWN;
-		}
-		if (dif.getY() == 1) {
-			return Direction::UP;
-		}
-		return Direction::NONE;
+
+		return true;
 	}
 };

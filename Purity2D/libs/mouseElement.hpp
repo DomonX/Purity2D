@@ -69,7 +69,6 @@ private:
 			onAxis();
 		}
 		else {
-			cout << "entered" << endl;
 			isHovered = false;
 			onBlur();
 		}
@@ -77,7 +76,6 @@ private:
 
 	void checkIfEnters(Vector2D pos) {
 		if (isPointInside(pos)) {
-			cout << "exited" << endl;
 			onHover();
 			isHovered = true;
 		}
